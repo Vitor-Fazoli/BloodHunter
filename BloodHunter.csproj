@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <AssemblyName>BloodHunter</AssemblyName>
+    <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\Blood.png" />
+    <None Remove="Assets\BloodFrame.png" />
+    <None Remove="Content\Buffs\BloodPlague.png" />
+    <None Remove="Content\Buffs\Day.png" />
+    <None Remove="Content\Buffs\Night.png" />
+    <None Remove="Content\Buffs\Silver.png" />
+    <None Remove="Content\Itens\Accessories\SacrificialDagger.png" />
+    <None Remove="Content\Itens\LifeEssence.png" />
+    <None Remove="Content\Itens\SuspiciousPotion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+  </ItemGroup>
+</Project>

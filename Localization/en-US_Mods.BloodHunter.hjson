@@ -1,0 +1,44 @@
+Buffs: {
+	BloodPlague: {
+		DisplayName: Blood Plague
+		Description: Mods.BloodHunter.Buffs.BloodPlague.Description
+	}
+
+	Day: {
+		DisplayName: Day
+		Description: Mods.BloodHunter.Buffs.Day.Description
+	}
+
+	Night: {
+		DisplayName: Night
+		Description: Mods.BloodHunter.Buffs.Night.Description
+	}
+
+	Silver: {
+		DisplayName: Silver
+		Description: Mods.BloodHunter.Buffs.Silver.Description
+	}
+}
+
+Items: {
+	LifeEssence: {
+		DisplayName: Life Essence
+		Tooltip: ""
+	}
+
+	SuspiciousPotion: {
+		DisplayName: Suspicious Potion
+		Tooltip: ""
+	}
+
+	SacrificialDagger: {
+		DisplayName: Sacrificial Dagger
+		Tooltip: "Every 10 seconds, take damage and increase the amount of blood."
+	}
+}
+
+Prefixes: {
+	Bloody.DisplayName: Bloody
+	Sacred.DisplayName: Sacred
+	Unholy.DisplayName: Unholy
+}
