@@ -33,7 +33,12 @@ Items: {
 
 	SacrificialDagger: {
 		DisplayName: Sacrificial Dagger
-		Tooltip: "Every 10 seconds, take damage and increase the amount of blood."
+		Tooltip: Every 10 seconds, take damage and increase the amount of blood.
+	}
+
+	TwilightShell: {
+		DisplayName: Twilight Shell
+		Tooltip: ""
 	}
 }
 

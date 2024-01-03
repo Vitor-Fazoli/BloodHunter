@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Itens.Accessories
@@ -17,18 +12,34 @@ namespace BloodHunter.Content.Itens.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var p = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
-
-            if (p.blood != 0)
-            {
-                p.
-            }
-
+            Main.LocalPlayer.GetModPlayer<TwilightShellP>().isTwilightShell = true;
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
             return Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>().bloodHunter;
+        }
+    }
+    public class TwilightShellP : ModPlayer
+    {
+        public bool isTwilightShell = false;
+
+        public override void OnHurt(Player.HurtInfo info)
+        {
+            if (isTwilightShell)
+            {
+                var p = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
+
+                if (p.blood != 0)
+                {
+                    p.blood -= info.Damage;
+                    info.Damage = 0;
+                }
+            }
+        }
+        public override void ResetEffects()
+        {
+            isTwilightShell = false;
         }
     }
 }

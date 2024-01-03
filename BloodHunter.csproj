@@ -8,12 +8,23 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <AdditionalFiles Remove="Common\UI\ClassSelectionUI\NovaPasta\**" />
+    <AdditionalFiles Remove="Common\UI\NovaPasta\**" />
+    <Compile Remove="Common\UI\ClassSelectionUI\NovaPasta\**" />
+    <Compile Remove="Common\UI\NovaPasta\**" />
+    <EmbeddedResource Remove="Common\UI\ClassSelectionUI\NovaPasta\**" />
+    <EmbeddedResource Remove="Common\UI\NovaPasta\**" />
+    <None Remove="Common\UI\ClassSelectionUI\NovaPasta\**" />
+    <None Remove="Common\UI\NovaPasta\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Assets\Blood.png" />
     <None Remove="Assets\BloodFrame.png" />
     <None Remove="Content\Buffs\BloodPlague.png" />
     <None Remove="Content\Buffs\Day.png" />
     <None Remove="Content\Buffs\Night.png" />
     <None Remove="Content\Buffs\Silver.png" />
+    <None Remove="Content\Itens\Accessories\SacrificialDagger - Cópia.png" />
     <None Remove="Content\Itens\Accessories\SacrificialDagger.png" />
     <None Remove="Content\Itens\LifeEssence.png" />
     <None Remove="Content\Itens\SuspiciousPotion.png" />

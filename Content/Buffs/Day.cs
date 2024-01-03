@@ -37,13 +37,10 @@ namespace BloodHunter.Content.Buffs
 
                 Player.lifeRegenTime = 0;
 
-                Player.lifeRegen -= 2;
-
-                Player.statDefense *= (int)0.8;
+                Player.lifeRegen -= 1;
 
                 Player.GetDamage(DamageClass.Generic) += 01f;
             }
-
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {

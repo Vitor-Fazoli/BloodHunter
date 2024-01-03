@@ -178,3 +178,4 @@ C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\Blood
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\refint\BloodHunter.dll
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\BloodHunter.pdb
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\ref\BloodHunter.dll
+C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\BloodHunter.sourcelink.json

@@ -46,16 +46,5 @@ namespace BloodHunter.Content.Prefixes
             Common.Players.BloodHunter player = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
             player.bloodMax += BLOOD_AMOUNT;
         }
-
-        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
-        {
-            yield return new TooltipLine(Mod, $"+{BLOOD_AMOUNT} Blood ", AdditionalTooltip.Value)
-            {
-                IsModifier = true,
-                OverrideColor = new Color(255, 0, 0)
-            };
-        }
-
-        private LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
     }
 }

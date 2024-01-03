@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -13,7 +12,7 @@ namespace BloodHunter.Common.UI.QuickBloodUI
         private const float Precent = 0f;
         private UIImage point;
         private UIImage frame;
-        private UIText text;
+        //private UIText text;
 
         public override void OnInitialize()
         {
@@ -29,14 +28,14 @@ namespace BloodHunter.Common.UI.QuickBloodUI
             frame.Width.Set(50, Precent);
             frame.Height.Set(42, Precent);
 
-            text = new UIText("");
-            text.Width.Set(50, Precent);
-            text.Height.Set(42, Precent);
-            text.Left.Set(0, Precent);
-            text.Top.Set(55, Precent);
+            //text = new UIText("");
+            //text.Width.Set(50, Precent);
+            //text.Height.Set(42, Precent);
+            //text.Left.Set(0, Precent);
+            //text.Top.Set(55, Precent);
 
             frame.Append(point);
-            frame.Append(text);
+            //frame.Append(text);
             Append(frame);
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -62,18 +61,23 @@ namespace BloodHunter.Common.UI.QuickBloodUI
             float quotient = (float)player.blood / player.bloodMax;
             quotient = Utils.Clamp(quotient, 0f, 1f);
 
-            if (player.blood <= player.bloodMax)
+            //if (player.blood <= player.bloodMax)
+            //{
+            //    text.SetText(player.blood.ToString());
+            //}
+            //else
+            //{
+            //    text.SetText("Max");
+            //}
+
+            if (frame.IsMouseHovering)
             {
-                text.SetText(player.blood.ToString());
-            }
-            else
-            {
-                text.SetText("Max");
+                Main.instance.MouseText(player.blood + "/" + player.bloodMax);
             }
 
 
             frame.Left.Set(20, Precent);
-            frame.Top.Set(500, Precent);
+            frame.Top.Set(Main.screenHeight / 3.2f, Precent);
             point.ImageScale = quotient;
 
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -21,11 +22,12 @@ namespace BloodHunter.Content.Itens
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            if (Main.rand.NextBool(2))
+            for (int i = 0; i < 5; i++)
             {
-                int dust = Dust.NewDust(Item.position - new Vector2(2f, 2f), Item.width, Item.height, DustID.Blood, Item.velocity.X, Item.velocity.Y, 100);
+                int dust = Dust.NewDust(Item.position - new Vector2(2f, 2f), Item.width * 2, Item.height * 2, DustID.VioletMoss, Item.velocity.X, Item.velocity.Y, 100);
                 Main.dust[dust].noGravity = true;
             }
+
             Lighting.AddLight(Item.position, 1f, 0.09f, 0.09f);
 
 
@@ -33,6 +35,25 @@ namespace BloodHunter.Content.Itens
             {
                 Item.active = false;
             }
+
+            Vector2 moveTo = Main.LocalPlayer.Center;
+
+            float speed = 20f;
+            Vector2 move = moveTo - Item.Center;
+            float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+            float turnResistance = 50f; //the larger this is, the slower the npc will turn
+            move = (Item.velocity * turnResistance + move) / (turnResistance + 1f);
+            magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+            Item.velocity = move;
+
         }
         public override bool OnPickup(Player player)
         {

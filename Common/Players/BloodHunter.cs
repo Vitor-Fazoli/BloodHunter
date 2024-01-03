@@ -33,7 +33,10 @@ namespace BloodHunter.Common.Players
         public bool canGetBlood = true;
         private int getBloodTime = 0;
 
-        public bool rangedCanGetBlood = false;
+        public bool isItRanger = false;
+
+        public int magicPassiveCooldown = 0;
+        public const int MAGIC_PASSIVE_COOLDOWN = 600 * 30;
 
         public bool IsBloodFull()
         {
@@ -55,7 +58,7 @@ namespace BloodHunter.Common.Players
                 }
             }
             // For Ranged Weapons
-            else if (bloodHunter && canGetBlood && rangedCanGetBlood)
+            else if (bloodHunter && canGetBlood && isItRanger)
             {
                 if (target.type != NPCID.TargetDummy)
                 {
@@ -68,9 +71,26 @@ namespace BloodHunter.Common.Players
         }
         #endregion
 
-        
-        public override void PostUpdate()
+        public override void OnConsumeMana(Item item, int manaConsumed)
         {
+            if (!isItRanger)
+            {
+                if ((Player.statMana <= Player.statManaMax2) && magicPassiveCooldown >= MAGIC_PASSIVE_COOLDOWN)
+                {
+                    magicPassiveCooldown = 0;
+                    Player.statMana = Player.statManaMax2;
+                }
+            }
+        }
+        public override void PreUpdate()
+        {
+            magicPassiveCooldown++;
+
+            if (magicPassiveCooldown >= MAGIC_PASSIVE_COOLDOWN)
+            {
+                magicPassiveCooldown = MAGIC_PASSIVE_COOLDOWN;
+            }
+
             if (bloodHunter)
             {
                 getBloodTime++;
