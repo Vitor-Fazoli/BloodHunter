@@ -1,8 +1,10 @@
-﻿using BloodHunter.Content.Buffs;
+﻿using BloodHunter.Common.Systems;
+using BloodHunter.Content.Buffs;
 using BloodHunter.Content.Itens;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -71,6 +73,24 @@ namespace BloodHunter.Common.Players
         }
         #endregion
 
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (KeybindSystem.RandomBuffKeybind.JustPressed && blood >= 10)
+            {
+                blood -= 10;
+                int buff = Main.rand.Next(BuffID.Count);
+                Player.AddBuff(buff, 600);
+                Main.NewText($"ExampleMod's ModKeybind was just pressed. The {Lang.GetBuffName(buff)} buff was given to the player.");
+            }
+        }
+
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (proj.DamageType == DamageClass.Ranged && hit.Crit && isItRanger)
+            {
+                Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X, target.Center.Y), new Vector2(0, -2), ModContent.ItemType<LifeEssence>(), 1);
+            }
+        }
         public override void OnConsumeMana(Item item, int manaConsumed)
         {
             if (!isItRanger)

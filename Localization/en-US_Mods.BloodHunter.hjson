@@ -47,3 +47,5 @@ Prefixes: {
 	Sacred.DisplayName: Sacred
 	Unholy.DisplayName: Unholy
 }
+
+Keybinds.RandomBuff.DisplayName: Random Buff

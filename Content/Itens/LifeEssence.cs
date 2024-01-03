@@ -22,9 +22,9 @@ namespace BloodHunter.Content.Itens
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
-                int dust = Dust.NewDust(Item.position - new Vector2(2f, 2f), Item.width * 2, Item.height * 2, DustID.VioletMoss, Item.velocity.X, Item.velocity.Y, 100);
+                int dust = Dust.NewDust(Item.position - new Vector2(2f, 2f), Item.width * 2, Item.height * 2, DustID.Blood, Item.velocity.X, Item.velocity.Y, 100);
                 Main.dust[dust].noGravity = true;
             }
 

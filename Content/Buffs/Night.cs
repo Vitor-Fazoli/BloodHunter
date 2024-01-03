@@ -34,6 +34,8 @@ namespace BloodHunter.Content.Buffs
                 Player.GetDamage(DamageClass.Generic) += 0.2f;
 
                 Player.nightVision = true;
+
+                Player.lifeRegen += 5;
             }
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)

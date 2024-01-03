@@ -37,7 +37,7 @@ namespace BloodHunter.Content.Buffs
 
                 Player.lifeRegenTime = 0;
 
-                Player.lifeRegen -= 1;
+                Player.lifeRegen -= 2;
 
                 Player.GetDamage(DamageClass.Generic) += 01f;
             }
@@ -46,7 +46,7 @@ namespace BloodHunter.Content.Buffs
         {
             if (Day)
             {
-                if (Main.rand.Next(4) < 3)
+                if (Main.rand.Next(4) < 2)
                 {
                     int dust = Dust.NewDust(Player.position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustID.Torch, 0, -1.86f, 100, Color.White, 1.2f);
                     Main.dust[dust].noGravity = true;
