@@ -39,8 +39,8 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
             text = new UIText("");
             text.Width.Set(50, Precent);
             text.Height.Set(42, Precent);
-            text.Left.Set(-10, Precent);
-            text.Top.Set(10, Precent);
+            text.Left.Set(0, Precent);
+            text.Top.Set(6, Precent);
 
             Append(icon);
             icon.Append(text);
@@ -82,7 +82,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
             {
                 if (cooldown >= 0)
                 {
-                    Main.instance.MouseText((cooldown/60).ToString());
+                    Main.instance.MouseText("Cooldown in progress");
                 }
                 else
                 {
@@ -94,7 +94,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                     else
                     {
                         Main.instance.MouseText("Click to change your passive class\n" +
-                        "Magic: Every 30 seconds, if your mana reaches 50%, refill it", 0, 0);
+                        "Magic: While you have blood, use it as your mana, but at half the cost", 0, 0);
                     }
                 }
             }

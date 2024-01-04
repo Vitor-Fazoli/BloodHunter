@@ -24,7 +24,7 @@ namespace BloodHunter.Content.Itens
         {
             for (int i = 0; i < 4; i++)
             {
-                int dust = Dust.NewDust(Item.position - new Vector2(2f, 2f), Item.width * 2, Item.height * 2, DustID.Blood, Item.velocity.X, Item.velocity.Y, 100);
+                int dust = Dust.NewDust(Item.position - new Vector2(2f, 2f), Item.width * 2, Item.height * 2, DustID.Blood, 0, 0, 100, Scale: 1.5f);
                 Main.dust[dust].noGravity = true;
             }
 
@@ -38,7 +38,24 @@ namespace BloodHunter.Content.Itens
 
             Vector2 moveTo = Main.LocalPlayer.Center;
 
-            float speed = 20f;
+            float speed = 3f;
+
+            for (int i = 0; i < 600; i++)
+            {
+                switch (i)
+                {
+                    case 150:
+                        speed = 10f;
+                        break;
+                    case 300:
+                        speed = 20f;
+                        break;
+                    case 600:
+                        speed = 50f;
+                        break;
+                }
+            }
+
             Vector2 move = moveTo - Item.Center;
             float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
             if (magnitude > speed)

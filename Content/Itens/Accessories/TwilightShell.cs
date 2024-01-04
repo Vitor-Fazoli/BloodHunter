@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Itens.Accessories
@@ -7,7 +8,11 @@ namespace BloodHunter.Content.Itens.Accessories
     {
         public override void SetDefaults()
         {
-            
+            Item.width = 32;
+            Item.height = 32;
+            Item.accessory = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.sellPrice(gold: 1);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

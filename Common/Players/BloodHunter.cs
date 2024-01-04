@@ -21,7 +21,7 @@ namespace BloodHunter.Common.Players
         public Color eyeColor;
         public bool bloodHunter = false;
         public int blood = 0;
-        public int bloodMax = 100;
+        public int bloodMax = 50;
         public const int BLOOD_MAX = 2000;
 
         public int regen = 1;
@@ -49,7 +49,7 @@ namespace BloodHunter.Common.Players
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             // For Magic Weapons
-            if (bloodHunter && canGetBlood && hit.DamageType == DamageClass.Magic)
+            if (bloodHunter && canGetBlood && hit.DamageType == DamageClass.Magic && !isItRanger)
             {
                 if (target.type != NPCID.TargetDummy)
                 {
@@ -95,10 +95,10 @@ namespace BloodHunter.Common.Players
         {
             if (!isItRanger)
             {
-                if ((Player.statMana <= Player.statManaMax2) && magicPassiveCooldown >= MAGIC_PASSIVE_COOLDOWN)
+                if (blood >= manaConsumed / 2)
                 {
-                    magicPassiveCooldown = 0;
-                    Player.statMana = Player.statManaMax2;
+                    blood -= manaConsumed / 2;
+                    Player.statMana += manaConsumed;
                 }
             }
         }
