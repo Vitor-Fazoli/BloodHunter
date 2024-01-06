@@ -18,6 +18,11 @@ namespace BloodHunter.Common.Players
     {
         public bool sunResistance = false;
 
+        public readonly int max_blood_goblet = 8;
+        public int bloodGoblet = 0;
+
+        public readonly int quantity_blood_per_goblet = 20;
+
         public Color eyeColor;
         public bool bloodHunter = false;
         public int blood = 0;
@@ -39,6 +44,7 @@ namespace BloodHunter.Common.Players
 
         public int magicPassiveCooldown = 0;
         public const int MAGIC_PASSIVE_COOLDOWN = 600 * 30;
+
 
         public bool IsBloodFull()
         {
@@ -104,13 +110,6 @@ namespace BloodHunter.Common.Players
         }
         public override void PreUpdate()
         {
-            magicPassiveCooldown++;
-
-            if (magicPassiveCooldown >= MAGIC_PASSIVE_COOLDOWN)
-            {
-                magicPassiveCooldown = MAGIC_PASSIVE_COOLDOWN;
-            }
-
             if (bloodHunter)
             {
                 getBloodTime++;
