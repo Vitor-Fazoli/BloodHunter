@@ -1,6 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace BloodHunter.Content.Itens.Consumables
 {
@@ -13,37 +14,37 @@ namespace BloodHunter.Content.Itens.Consumables
 
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.ManaCrystal);
+            Item.rare = ItemRarityID.Green;
+            Item.maxStack = 1;
+            Item.consumable = true;
+            Item.sellPrice(silver: 50);
         }
 
         public override bool CanUseItem(Player player)
         {
              Common.Players.BloodHunter p = player.GetModPlayer<Common.Players.BloodHunter>();
 
-            return p.bloodGoblet < p.max_blood_goblet;
+            return p.bloodGoblet < p.MAX_BLOOD_GOBLET && p.bloodHunter;
         }
 
         public override bool? UseItem(Player player)
         {
             Common.Players.BloodHunter p = player.GetModPlayer<Common.Players.BloodHunter>();
 
-            if (p.bloodGoblet < p.max_blood_goblet)
+            if (p.bloodGoblet < p.MAX_BLOOD_GOBLET)
             {
                 return null;
             }
 
-            p.bloodMax += p.quantity_blood_per_goblet;
+            p.bloodMax += 10;
             p.bloodGoblet++;
 
+            PopupText.NewText(new AdvancedPopupRequest
+            {
+                Text = "Your maximum blood has been increased by 10",
+                Color = Color.Purple
+            }, player.position + new Vector2(0, -20));
             return true;
-        }
-
-        public override void AddRecipes()
-        {
-            //CreateRecipe()
-              //  .AddIngredient<ExampleItem>()
-                //.AddTile<Tiles.Furniture.ExampleWorkbench>()
-                //.Register();
         }
     }
 }

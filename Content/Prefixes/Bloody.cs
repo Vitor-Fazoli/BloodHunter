@@ -32,7 +32,7 @@ namespace BloodHunter.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.GetModPlayer<Common.Players.BloodHunter>().bloodMax2 += 15;
+            player.GetModPlayer<Common.Players.BloodHunter>().bloodMax2 += 10;
         }
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)

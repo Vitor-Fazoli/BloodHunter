@@ -12,23 +12,10 @@ namespace BloodHunter.Common.GlobalNPCs
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-           // if (npc.type == NPCID.EyeofCthulhu)
-           // {
-           //     foreach (var rule in npcLoot.Get())
-           //     {
-           //         if (rule is DropBasedOnExpertMode dropBasedOnExpertMode && dropBasedOnExpertMode.ruleForNormalMode is OneFromOptionsNotScaledWithLuckDropRule oneFromOptionsDrop && oneFromOptionsDrop.dropIds.Contains(ItemID.BeeGun))
-           //         {
-           //             var original = oneFromOptionsDrop.dropIds.ToList();
-           //             //original.Add(ModContent.ItemType<Cont.>());
-           //             oneFromOptionsDrop.dropIds = [.. original];
-           //         }
-           //     }
-           // }
-
             // 0.5% chance to drop Adamantite Fragment of any tipe of slime
             if (npc.aiStyle == NPCAIStyleID.Slime)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(Condition.TimeDay.ToDropCondition(ShowItemDropInUI.Always), ModContent.ItemType<AdamantiteFragment>(), chanceDenominator: 20));
+                npcLoot.Add(ItemDropRule.ByCondition(Condition.TimeDay.ToDropCondition(ShowItemDropInUI.Always), ModContent.ItemType<AdamantiteFragment>(), chanceDenominator: 50));
             }
         }
     }

@@ -15,6 +15,8 @@ namespace BloodHunter.Content.Itens.Materials
             Item.width = 32;
             Item.height = 32;
             Item.rare = ItemRarityID.Lime;
+            Item.maxStack = 99;
+            Item.material = true;
         }
     }
 }

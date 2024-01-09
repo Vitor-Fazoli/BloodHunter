@@ -23,12 +23,16 @@ Buffs: {
 Items: {
 	LifeEssence: {
 		DisplayName: Life Essence
-		Tooltip: ""
+		Tooltip: The essence of life, which converts into blood when picked up.
 	}
 
 	SuspiciousPotion: {
 		DisplayName: Suspicious Potion
-		Tooltip: ""
+		Tooltip:
+			'''
+			Turns you into a vampire, consume this to see all the changes in your character.
+			 Recommended for magic and ranged damage.
+			'''
 	}
 
 	SacrificialDagger: {
@@ -38,7 +42,7 @@ Items: {
 
 	TwilightShell: {
 		DisplayName: Twilight Shell
-		Tooltip: ""
+		Tooltip: While you have blood, all damage is dealt to the amount of blood instead of your life.
 	}
 
 	BloodGoblet: {
@@ -53,7 +57,12 @@ Items: {
 
 	Sarcophagus: {
 		DisplayName: Sarcophagus
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases your maximum blood by 50.
+			 If you are a Ranger, you gain defense equivalent to the maximum blood divided by 10.
+			 If you are a Mage, you lose 20 maximum health but increase the regeneration of your blood.
+			'''
 	}
 }
 

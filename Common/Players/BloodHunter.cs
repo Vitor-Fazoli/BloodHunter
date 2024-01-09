@@ -19,10 +19,8 @@ namespace BloodHunter.Common.Players
     {
         public bool sunResistance;
 
-        public readonly int max_blood_goblet;
-        public int bloodGoblet;
-
-        public readonly int quantity_blood_per_goblet;
+        public readonly int MAX_BLOOD_GOBLET = 5;
+        public int bloodGoblet = 0;
 
         public Color eyeColor;
         public bool bloodHunter;
@@ -186,6 +184,7 @@ namespace BloodHunter.Common.Players
             ModPacket packet = Mod.GetPacket();
             packet.Write((byte)Player.whoAmI);
             packet.Write(bloodHunter);
+            packet.Write(bloodGoblet);
             packet.Send(toWho, fromWho);
         }
         public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */
@@ -205,6 +204,7 @@ namespace BloodHunter.Common.Players
         public override void SaveData(TagCompound tag)
         {
             tag["bloodHunter"] = bloodHunter;
+            tag["bloodGoblet"] = bloodGoblet;
             tag["eyeColor"] = eyeColor;
         }
 
@@ -212,6 +212,7 @@ namespace BloodHunter.Common.Players
         {
             bloodHunter = tag.GetBool("bloodHunter");
             eyeColor = tag.Get<Color>("eyeColor");
+            bloodGoblet = tag.GetAsInt("bloodGoblet"); 
         }
         #endregion
     }

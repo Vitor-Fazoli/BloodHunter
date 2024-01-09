@@ -8,9 +8,7 @@ using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Itens.Accessories
 {
-    /// <summary>
-    /// 
-    /// </summary>
+
     public class Sarcophagus : ModItem
     {
         public override void SetDefaults()
@@ -22,18 +20,18 @@ namespace BloodHunter.Content.Itens.Accessories
         {
             var p = player.GetModPlayer<Common.Players.BloodHunter>();
 
-            p.bloodMax2 += 100;
-            player.statDefense += 5;
+            p.bloodMax2 += 50;
 
             //Ranger
             if (p.isItRanger)
             {
-
+                player.statDefense += p.bloodMax2 / 10;
             }
             // Magic
             else
             {
-                
+                player.statLifeMax2 -= 20;
+                p.getBloodRate -= 120;
             }
         }
     }
