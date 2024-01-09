@@ -12,48 +12,18 @@ namespace BloodHunter.Common.GlobalNPCs
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == NPCID.EyeofCthulhu)
-            {
-                foreach (var rule in npcLoot.Get())
-                {
-                    if (rule is DropBasedOnExpertMode dropBasedOnExpertMode && dropBasedOnExpertMode.ruleForNormalMode is OneFromOptionsNotScaledWithLuckDropRule oneFromOptionsDrop && oneFromOptionsDrop.dropIds.Contains(ItemID.BeeGun))
-                    {
-                        var original = oneFromOptionsDrop.dropIds.ToList();
-                        //original.Add(ModContent.ItemType<Cont.>());
-                        oneFromOptionsDrop.dropIds = [.. original];
-                    }
-                }
-            }
-
-            if (npc.type == NPCID.BloodNautilus)
-            {
-
-            }
-
-            if (npc.type == NPCID.WallofFlesh)
-            {
-                
-            }
-
-            if (npc.type == NPCID.Retinazer)
-            {
-            
-            }
-
-            if (npc.type == NPCID.Spazmatism)
-            {
-                
-            }
-
-            if (npc.type == NPCID.CultistBoss)
-            {
-            
-            }
-
-            if (npc.type == NPCID.DukeFishron)
-            {
-            
-            }
+           // if (npc.type == NPCID.EyeofCthulhu)
+           // {
+           //     foreach (var rule in npcLoot.Get())
+           //     {
+           //         if (rule is DropBasedOnExpertMode dropBasedOnExpertMode && dropBasedOnExpertMode.ruleForNormalMode is OneFromOptionsNotScaledWithLuckDropRule oneFromOptionsDrop && oneFromOptionsDrop.dropIds.Contains(ItemID.BeeGun))
+           //         {
+           //             var original = oneFromOptionsDrop.dropIds.ToList();
+           //             //original.Add(ModContent.ItemType<Cont.>());
+           //             oneFromOptionsDrop.dropIds = [.. original];
+           //         }
+           //     }
+           // }
 
             // 0.5% chance to drop Adamantite Fragment of any tipe of slime
             if (npc.aiStyle == NPCAIStyleID.Slime)

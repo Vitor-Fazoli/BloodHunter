@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Itens
 {
-    public class LifeEssence : ModItem
+    public class LifeEssence: ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,8 +16,8 @@ namespace BloodHunter.Content.Itens
 
         public override void SetDefaults()
         {
-            Item.width = 4;
-            Item.height = 4;
+            Item.width = 1;
+            Item.height = 1;
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
@@ -74,9 +74,9 @@ namespace BloodHunter.Content.Itens
         }
         public override bool OnPickup(Player player)
         {
-            int amount = 1 + Main.rand.Next(4);
+            int amount = 5 + Main.rand.Next(5);
 
-            player.GetModPlayer<Common.Players.BloodHunter>().blood += amount;
+            player.GetModPlayer<Common.Players.BloodHunter>().bloodCurrent += amount;
             CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), new Color(200, 0, 255), amount);
             SoundEngine.PlaySound(SoundID.AbigailUpgrade, player.position);
             Item.active = false;

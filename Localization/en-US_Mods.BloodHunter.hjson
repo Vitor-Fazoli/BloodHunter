@@ -6,7 +6,7 @@ Buffs: {
 
 	Day: {
 		DisplayName: Day
-		Description: Mods.BloodHunter.Buffs.Day.Description
+		Description: Takes constant damage while in light
 	}
 
 	Night: {
@@ -40,12 +40,32 @@ Items: {
 		DisplayName: Twilight Shell
 		Tooltip: ""
 	}
+
+	BloodGoblet: {
+		DisplayName: Blood Goblet
+		Tooltip: ""
+	}
+
+	AdamantiteFragment: {
+		DisplayName: Adamantite Fragment
+		Tooltip: ""
+	}
+
+	Sarcophagus: {
+		DisplayName: Sarcophagus
+		Tooltip: ""
+	}
 }
 
 Prefixes: {
-	Bloody.DisplayName: Bloody
+	Bloody: {
+		DisplayName: Bloody
+		AdditionalTooltip: Mods.BloodHunter.Prefixes.Bloody.AdditionalTooltip
+	}
+
 	Sacred.DisplayName: Sacred
 	Unholy.DisplayName: Unholy
+	BloodTooltip: Mods.BloodHunter.Prefixes.BloodTooltip
 }
 
 Keybinds.RandomBuff.DisplayName: Random Buff

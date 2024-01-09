@@ -1,4 +1,5 @@
 ﻿using BloodHunter.Common.Systems;
+using BloodHunter.Common.UI.ClassSelectionUI;
 using BloodHunter.Content.Buffs;
 using BloodHunter.Content.Itens;
 using Microsoft.Xna.Framework;
@@ -16,57 +17,45 @@ namespace BloodHunter.Common.Players
     /// </summary>
     public class BloodHunter : ModPlayer
     {
-        public bool sunResistance = false;
+        public bool sunResistance;
 
-        public readonly int max_blood_goblet = 8;
-        public int bloodGoblet = 0;
+        public readonly int max_blood_goblet;
+        public int bloodGoblet;
 
-        public readonly int quantity_blood_per_goblet = 20;
+        public readonly int quantity_blood_per_goblet;
 
         public Color eyeColor;
-        public bool bloodHunter = false;
-        public int blood = 0;
-        public int bloodMax = 50;
-        public const int BLOOD_MAX = 2000;
-
-        public int regen = 1;
-        public const int REGE_MAX = 5;
-        public int regenRate = 210;
-        public const int REGEN_MAX = 30; //0.05 seconds
-        private int regenTimer = 0;
-
+        public bool bloodHunter;
+        public int bloodCurrent;
+        public int bloodMax;
+        public const int defaultBloodMax = 50;
+        public int bloodMax2;
+        
+        public int getBloodCurrent;
         public int getBloodRate = 300; // 0.5 second
-        public const int GET_BLOOD_RATE_MAX = 60; //0.1 second
         public bool canGetBlood = true;
-        private int getBloodTime = 0;
 
         public bool isItRanger = false;
 
         public int magicPassiveCooldown = 0;
         public const int MAGIC_PASSIVE_COOLDOWN = 600 * 30;
 
+        public int level;
+        public int countToXp;
+        public int xp;
+        public int xpMax;
+
+        public int classCooldown = 0;
 
         public bool IsBloodFull()
         {
-            return blood == bloodMax;
+            return bloodCurrent == bloodMax2;
         }
 
-        #region getting blood
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            // For Magic Weapons
-            if (bloodHunter && canGetBlood && hit.DamageType == DamageClass.Magic && !isItRanger)
-            {
-                if (target.type != NPCID.TargetDummy)
-                {
-                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 2 + Main.rand.Next(2)), new Vector2(
-                       0, -2), ModContent.ItemType<LifeEssence>(), 1);
-
-                    canGetBlood = false;
-                }
-            }
             // For Ranged Weapons
-            else if (bloodHunter && canGetBlood && isItRanger)
+            if (bloodHunter && canGetBlood && isItRanger)
             {
                 if (target.type != NPCID.TargetDummy)
                 {
@@ -77,60 +66,74 @@ namespace BloodHunter.Common.Players
                 }
             }
         }
-        #endregion
-
-        public override void ProcessTriggers(TriggersSet triggersSet)
-        {
-            if (KeybindSystem.RandomBuffKeybind.JustPressed && blood >= 10)
-            {
-                blood -= 10;
-                int buff = Main.rand.Next(BuffID.Count);
-                Player.AddBuff(buff, 600);
-                Main.NewText($"ExampleMod's ModKeybind was just pressed. The {Lang.GetBuffName(buff)} buff was given to the player.");
-            }
-        }
-
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (proj.DamageType == DamageClass.Ranged && hit.Crit && isItRanger)
             {
-                Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X, target.Center.Y), new Vector2(0, -2), ModContent.ItemType<LifeEssence>(), 1);
+                if (target.type != NPCID.TargetDummy)
+                {
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X, target.Center.Y), new Vector2(0, -2), ModContent.ItemType<LifeEssence>(), 1);
+                }
             }
         }
         public override void OnConsumeMana(Item item, int manaConsumed)
         {
             if (!isItRanger)
             {
-                if (blood >= manaConsumed / 2)
+                if (bloodCurrent >= manaConsumed / 2)
                 {
-                    blood -= manaConsumed / 2;
+                    bloodCurrent -= manaConsumed / 2;
                     Player.statMana += manaConsumed;
                 }
             }
         }
-        public override void PreUpdate()
+        public override void Initialize()
+        {
+            bloodMax = defaultBloodMax;
+        }
+        public override void UpdateDead()
+        {
+            ResetVariables();
+        }
+        public override void ResetEffects()
+        {
+            ResetVariables();
+        }
+        public override void PostUpdateMiscEffects()
+        {
+            bloodCurrent = Utils.Clamp(bloodCurrent, 0, bloodMax2);
+            Player.eyeColor = new Color(255, 0, 0);
+
+            UpdateBuffs();
+            RegenerateBlood();
+        }
+        private void ResetVariables()
+        {
+            bloodMax2 = bloodMax;
+            getBloodRate = 300;
+        }
+
+        private void UpdateBuffs()
         {
             if (bloodHunter)
             {
-                getBloodTime++;
-
-                if (getBloodTime >= getBloodRate)
+                if (isItRanger)
                 {
-                    canGetBlood = true;
-                    getBloodTime = 0;
+                    getBloodCurrent++;
+
+                    if (getBloodCurrent >= getBloodRate)
+                    {
+                        getBloodCurrent = 0;
+                        canGetBlood = true;
+                    }
+
+                    if (bloodCurrent >= bloodMax && classCooldown <= 0)
+                    {
+                        Player.AddBuff(BuffID.Inferno, 60 * 30);
+                        bloodCurrent = 0;
+                    }
                 }
 
-                if (blood >= bloodMax)
-                {
-                    blood = bloodMax;
-                }
-
-                if (blood <= 0)
-                {
-                    blood = 0;
-                }
-
-                Player.eyeColor = new Color(255, 0, 0);
 
                 Player.AddBuff(ModContent.BuffType<BloodPlague>(), 2);
                 bool ZoneSunHeight = Player.ZoneOverworldHeight || Player.ZoneSkyHeight;
@@ -152,22 +155,31 @@ namespace BloodHunter.Common.Players
                 else
                 {
                     Player.AddBuff(ModContent.BuffType<Night>(), 2);
-
-                    regenTimer++;
-
-                    if (blood != bloodMax)
-                    {
-                        if (regenTimer >= regenRate)
-                        {
-                            blood += regen;
-                            regenTimer = 0;
-                        }
-                    }
-
                 }
             }
         }
+        private void RegenerateBlood()
+        {
+            if (!isItRanger)
+            {
+                if (bloodCurrent <= 0)
+                {
+                    bloodCurrent = 0;
+                }
 
+                getBloodCurrent++;
+
+                if (bloodCurrent < bloodMax2)
+                {
+                    if (getBloodCurrent >= getBloodRate / 6)
+                    {
+                        bloodCurrent += 1;
+
+                        getBloodCurrent = 0;
+                    }
+                }
+            }
+        }
         #region data saving
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {

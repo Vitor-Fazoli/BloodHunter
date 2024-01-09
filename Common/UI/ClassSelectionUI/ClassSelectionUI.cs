@@ -1,15 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria;
-using Humanizer;
 
 namespace BloodHunter.Common.UI.ClassSelectionUI
 {
@@ -22,7 +16,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         private ReLogic.Content.Asset<Texture2D> magicIcon;
 
         private int cooldown;
-        private const int COOLDOWN_MAX = 360;
+        private const int COOLDOWN_MAX = 60 * 30;
 
         public override void OnInitialize()
         {
@@ -63,11 +57,15 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         }
         public override void Update(GameTime gameTime)
         {
-            if (cooldown >= 0)
+            var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
+
+           
+
+            if (player.classCooldown >= 0)
             {
-                text.SetText((cooldown / 60).ToString());
+                text.SetText((player.classCooldown / 60).ToString());
                 icon.Color = Color.Gray;
-                cooldown--;
+                player.classCooldown--;
             }
             else
             {
@@ -76,11 +74,11 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
             }
 
 
-            var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
+            
 
             if (icon.IsMouseHovering)
             {
-                if (cooldown >= 0)
+                if (player.classCooldown >= 0)
                 {
                     Main.instance.MouseText("Cooldown in progress");
                 }
@@ -118,7 +116,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                     player.isItRanger = true;
                 }
 
-                cooldown = COOLDOWN_MAX;
+                player.classCooldown = COOLDOWN_MAX;
             }
         }
     }

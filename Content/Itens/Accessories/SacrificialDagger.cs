@@ -35,7 +35,7 @@ namespace BloodHunter.Content.Itens.Accessories
             {
                 if (timer > 600)
                 {
-                    p.blood += 5;
+                    p.bloodCurrent += 5;
                     timer = 0;
                     player.statLife -= 5;
                 }

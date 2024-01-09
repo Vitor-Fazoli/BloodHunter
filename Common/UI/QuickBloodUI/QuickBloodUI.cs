@@ -58,12 +58,12 @@ namespace BloodHunter.Common.UI.QuickBloodUI
         {
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
 
-            float quotient = (float)player.blood / player.bloodMax;
+            float quotient = (float)player.bloodCurrent / player.bloodMax2;
             quotient = Utils.Clamp(quotient, 0f, 1f);
 
-            //if (player.blood <= player.bloodMax)
+            //if (player.bloodCurrent <= player.bloodMax)
             //{
-            //    text.SetText(player.blood.ToString());
+            //    text.SetText(player.bloodCurrent.ToString());
             //}
             //else
             //{
@@ -72,7 +72,7 @@ namespace BloodHunter.Common.UI.QuickBloodUI
 
             if (frame.IsMouseHovering)
             {
-                Main.instance.MouseText(player.blood + "/" + player.bloodMax);
+                Main.instance.MouseText(player.bloodCurrent + "/" + player.bloodMax2);
             }
 
 

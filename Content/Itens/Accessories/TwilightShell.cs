@@ -35,9 +35,9 @@ namespace BloodHunter.Content.Itens.Accessories
             {
                 var p = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
 
-                if (p.blood != 0)
+                if (p.bloodCurrent != 0)
                 {
-                    p.blood -= info.Damage;
+                    p.bloodCurrent -= info.Damage;
                     info.Damage = 0;
                 }
             }

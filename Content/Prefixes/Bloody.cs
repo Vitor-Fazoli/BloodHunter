@@ -13,27 +13,16 @@ namespace BloodHunter.Content.Prefixes
     {
         public virtual float Power => 1f;
 
-        private const int BLOOD_AMOUNT = 10;
-
         public override PrefixCategory Category => PrefixCategory.Accessory;
 
         public override float RollChance(Item item)
         {
-            return 2f;
+            return 5f;
         }
 
         public override bool CanRoll(Item item)
         {
-            Common.Players.BloodHunter player = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
-
-            if (player.bloodHunter)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Main.LocalPlayer.GetModPlayer < Common.Players.BloodHunter>().bloodHunter;
         }
 
         public override void ModifyValue(ref float valueMult)
@@ -41,10 +30,30 @@ namespace BloodHunter.Content.Prefixes
             valueMult *= 1f + 0.05f * Power;
         }
 
-        public override void Apply(Item item)
+        public override void ApplyAccessoryEffects(Player player)
         {
-            Common.Players.BloodHunter player = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
-            player.bloodMax += BLOOD_AMOUNT;
+            player.GetModPlayer<Common.Players.BloodHunter>().bloodMax2 += 15;
+        }
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+
+            yield return new TooltipLine(Mod, "PrefixWeaponAwesome", BloodTooltip.Format(Power))
+            {
+                IsModifier = true,
+            };
+        }
+
+        public static LocalizedText BloodTooltip
+        {
+            get; private set;
+        }
+        public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
+
+        public override void SetStaticDefaults()
+        {
+            BloodTooltip = Mod.GetLocalization($"{LocalizationCategory}.{nameof(BloodTooltip)}");
+            _ = AdditionalTooltip;
         }
     }
 }

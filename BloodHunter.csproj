@@ -24,8 +24,10 @@
     <None Remove="Content\Buffs\Day.png" />
     <None Remove="Content\Buffs\Night.png" />
     <None Remove="Content\Buffs\Silver.png" />
-    <None Remove="Content\Itens\Accessories\SacrificialDagger - Cópia.png" />
     <None Remove="Content\Itens\Accessories\SacrificialDagger.png" />
+    <None Remove="Content\Itens\Accessories\Sarcophagus.png" />
+    <None Remove="Content\Itens\AdamantiteFragment.png" />
+    <None Remove="Content\Itens\Consumables\BloodGoblet.png" />
     <None Remove="Content\Itens\LifeEssence.png" />
     <None Remove="Content\Itens\SuspiciousPotion.png" />
   </ItemGroup>
