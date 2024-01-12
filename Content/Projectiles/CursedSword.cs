@@ -26,8 +26,8 @@ namespace BloodHunter.Content.Projectiles
 
         public sealed override void SetDefaults()
         {
-            Projectile.width = 26;
-            Projectile.height = 64;
+            Projectile.width = 38;
+            Projectile.height = 116;
             Projectile.tileCollide = false;
 
             Projectile.friendly = true;
@@ -188,16 +188,25 @@ namespace BloodHunter.Content.Projectiles
 
                 if (Projectile.ai[0] <= 60)
                 {
-                    if (targetCenter.X < 0)
+                    if (targetCenter.X > Projectile.Center.X)
                     {
-                        Projectile.rotation += 0.4f;
+                        Projectile.rotation += 0.3f;
                     }
                     else
                     {
-                        Projectile.rotation -= 0.4f;
+                        Projectile.rotation -= 0.3f;
                     }
-                        
+
                     Projectile.velocity = Vector2.Zero;
+                }
+                else if (Projectile.ai[0] < 90)
+                {
+                    Vector2 direction = targetCenter - Projectile.Center;
+                    direction.Normalize();
+                    direction *= speed;
+
+                    Projectile.rotation = direction.ToRotation() + MathHelper.ToRadians(90f);
+                    Projectile.velocity = - (Projectile.velocity * (inertia - 1) + direction) / 4;
                 }
                 else
                 {
@@ -206,7 +215,7 @@ namespace BloodHunter.Content.Projectiles
                     direction *= speed;
 
 
-                    Projectile.velocity = (Projectile.velocity * (inertia - 1) + direction) / inertia;
+                    Projectile.velocity = (Projectile.velocity * (inertia - 1) + direction * 1.3f) / inertia;
                     Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
                 }
             }
