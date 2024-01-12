@@ -1,9 +1,12 @@
-﻿using System;
+﻿using BloodHunter.Content.Projectiles;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,8 +31,8 @@ namespace BloodHunter.Content.Itens.Accessories
             {
                 if (p.bloodCurrent >= p.bloodMax2)
                 {
-                    //Criar um projétil que atua igual a Enchanted Sword
-                    //Projectile.NewProjectile();
+                    Projectile.NewProjectile(new EntitySource_TileBreak(2,2),player.position + new Vector2(0, -30),Vector2.Zero, ModContent.ProjectileType<CursedSword>(),p.bloodMax2,10);
+                    p.bloodCurrent = 0;
                 }
             }
         }

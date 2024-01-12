@@ -4,6 +4,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria;
+using ReLogic.Content;
 
 namespace BloodHunter.Common.UI.ClassSelectionUI
 {
@@ -22,9 +23,8 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         {
             rangerIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/RangerIcon");
             magicIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/MagicIcon");
-
-
-            icon = new UIImage(magicIcon);
+            
+            icon = new UIImage(rangerIcon);
             icon.Left.Set(3, Precent);
             icon.Top.Set((Main.screenHeight / 2.4f), Precent);
             icon.Width.Set(30, Precent);
@@ -59,7 +59,15 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         {
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
 
-           
+            if (player.isItRanger)
+            {
+                icon.SetImage(rangerIcon);
+            }
+            else
+            {
+                icon.SetImage(magicIcon);
+            }
+
 
             if (player.classCooldown >= 0)
             {

@@ -184,7 +184,7 @@ namespace BloodHunter.Common.Players
             ModPacket packet = Mod.GetPacket();
             packet.Write((byte)Player.whoAmI);
             packet.Write(bloodHunter);
-            packet.Write(bloodGoblet);
+            packet.Write(isItRanger);
             packet.Send(toWho, fromWho);
         }
         public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */
@@ -206,13 +206,15 @@ namespace BloodHunter.Common.Players
             tag["bloodHunter"] = bloodHunter;
             tag["bloodGoblet"] = bloodGoblet;
             tag["eyeColor"] = eyeColor;
+            tag["isItRanger"] = isItRanger;
         }
 
         public override void LoadData(TagCompound tag)
         {
             bloodHunter = tag.GetBool("bloodHunter");
             eyeColor = tag.Get<Color>("eyeColor");
-            bloodGoblet = tag.GetAsInt("bloodGoblet"); 
+            bloodGoblet = tag.GetAsInt("bloodGoblet");
+            isItRanger = tag.GetBool("isItRanger");
         }
         #endregion
     }
