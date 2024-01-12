@@ -31,10 +31,6 @@ namespace BloodHunter.Content.Itens.Consumables
         {
             Common.Players.BloodHunter p = player.GetModPlayer<Common.Players.BloodHunter>();
 
-            if (p.bloodGoblet < p.MAX_BLOOD_GOBLET)
-            {
-                return null;
-            }
 
             p.bloodMax += 10;
             p.bloodGoblet++;

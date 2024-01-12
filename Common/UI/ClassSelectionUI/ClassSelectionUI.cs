@@ -15,7 +15,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         private ReLogic.Content.Asset<Texture2D> rangerIcon;
         private ReLogic.Content.Asset<Texture2D> magicIcon;
 
-        private int cooldown;
+        private readonly int cooldown;
         private const int COOLDOWN_MAX = 60 * 30;
 
         public override void OnInitialize()
@@ -25,8 +25,8 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
 
 
             icon = new UIImage(magicIcon);
-            icon.Left.Set(65, Precent);
-            icon.Top.Set((Main.screenHeight / 3.2f) + 30, Precent);
+            icon.Left.Set(3, Precent);
+            icon.Top.Set((Main.screenHeight / 2.4f), Precent);
             icon.Width.Set(30, Precent);
             icon.Height.Set(30, Precent);
 
@@ -86,13 +86,11 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                 {
                     if (player.isItRanger)
                     {
-                        Main.instance.MouseText("Click to change your passive class\n" +
-                        "Ranger: All critical hits generate life essence for you", 0, 0);
+                        Main.instance.MouseText("Ranger: All critical hits generate life essence for you\n Click to change your passive class", 0, 0);
                     }
                     else
                     {
-                        Main.instance.MouseText("Click to change your passive class\n" +
-                        "Magic: While you have blood, use it as your mana, but at half the cost", 0, 0);
+                        Main.instance.MouseText("Magic: While you have blood, use it as your mana, but at half the cost\nClick to change your passive class", 0, 0);
                     }
                 }
             }

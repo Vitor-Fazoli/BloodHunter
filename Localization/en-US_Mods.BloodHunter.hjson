@@ -64,6 +64,11 @@ Items: {
 			 If you are a Mage, you lose 20 maximum health but increase the regeneration of your blood.
 			'''
 	}
+
+	CursedScabbard: {
+		DisplayName: Cursed Scabbard
+		Tooltip: ""
+	}
 }
 
 Prefixes: {
@@ -72,7 +77,11 @@ Prefixes: {
 		AdditionalTooltip: Mods.BloodHunter.Prefixes.Bloody.AdditionalTooltip
 	}
 
-	Sacred.DisplayName: Sacred
+	Sacred: {
+		DisplayName: Sacred
+		AdditionalTooltip: Mods.BloodHunter.Prefixes.Sacred.AdditionalTooltip
+	}
+
 	Unholy.DisplayName: Unholy
 	BloodTooltip: Mods.BloodHunter.Prefixes.BloodTooltip
 }
