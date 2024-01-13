@@ -14,13 +14,11 @@ namespace BloodHunter.Content.Projectiles
     {
         public override void SetStaticDefaults()
         {
-
-
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 
             Main.projPet[Projectile.type] = true;
 
-            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true; 
+            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
@@ -78,7 +76,7 @@ namespace BloodHunter.Content.Projectiles
                 return false;
             }
 
-           //if (owner.HasBuff(ModContent.BuffType<ExampleSimpleMinionBuff>()))
+            //if (owner.HasBuff(ModContent.BuffType<ExampleSimpleMinionBuff>()))
             //{
             //    Projectile.timeLeft = 2;
             //}
@@ -89,16 +87,11 @@ namespace BloodHunter.Content.Projectiles
         private void GeneralBehavior(Player owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition)
         {
             Vector2 idlePosition = owner.Center;
-            idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles from the center of the player)
+            idlePosition.Y -= 48f;
 
-            // If your minion doesn't aimlessly move around when it's idle, you need to "put" it into the line of other summoned minions
-            // The index is projectile.minionPos
             float minionPositionOffsetX = (10 + Projectile.minionPos * 40) * -owner.direction;
-            idlePosition.X += minionPositionOffsetX; // Go behind the player
+            idlePosition.X += minionPositionOffsetX;
 
-            // All of this code below this line is adapted from Spazmamini code (ID 388, aiStyle 66)
-
-            // Teleport to player if distance is too big
             vectorToIdlePosition = idlePosition - Projectile.Center;
             distanceToIdlePosition = vectorToIdlePosition.Length();
 
@@ -159,12 +152,8 @@ namespace BloodHunter.Content.Projectiles
                         float between = Vector2.Distance(npc.Center, Projectile.Center);
                         bool closest = Vector2.Distance(Projectile.Center, targetCenter) > between;
                         bool inRange = between < distanceFromTarget;
-                        bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
-                        // Additional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
-                        // The number depends on various parameters seen in the movement code below. Test different ones out until it works alright
-                        bool closeThroughWall = between < 100f;
 
-                        if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall))
+                        if (((closest && inRange) || !foundTarget))
                         {
                             distanceFromTarget = between;
                             targetCenter = npc.Center;
@@ -180,7 +169,6 @@ namespace BloodHunter.Content.Projectiles
         {
             float speed = 13f;
             float inertia = 4;
-
 
             if (foundTarget)
             {
@@ -206,7 +194,7 @@ namespace BloodHunter.Content.Projectiles
                     direction *= speed;
 
                     Projectile.rotation = direction.ToRotation() + MathHelper.ToRadians(90f);
-                    Projectile.velocity = - (Projectile.velocity * (inertia - 1) + direction) / 4;
+                    Projectile.velocity = -(Projectile.velocity * (inertia - 1) + direction) / 4;
                 }
                 else
                 {
@@ -221,17 +209,14 @@ namespace BloodHunter.Content.Projectiles
             }
             else
             {
-                // Minion doesn't have a target: return to player and idle
                 if (distanceToIdlePosition > 600f)
                 {
-                    // Speed up the minion if it's away from the player
                     Projectile.rotation = Projectile.velocity.X * 0.05f;
                     speed = 12f;
                     inertia = 60f;
                 }
                 else
                 {
-                    // Slow down the minion if closer to the player
                     Projectile.rotation = Projectile.velocity.X * 0.05f;
                     speed = 4f;
                     inertia = 80f;
@@ -253,8 +238,7 @@ namespace BloodHunter.Content.Projectiles
 
         private void Visuals()
         {
-           
-            Lighting.AddLight(Projectile.Center, Color.White.ToVector3() * 0.78f);
+            Lighting.AddLight(Projectile.Center, Color.White.ToVector3() * 0.55f);
         }
     }
 }
