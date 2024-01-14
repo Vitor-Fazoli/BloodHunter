@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace BloodHunter.Content.Itens.Accessories
+namespace BloodHunter.Content.Items.Accessories
 {
 
     public class Sarcophagus : ModItem
@@ -15,7 +15,7 @@ namespace BloodHunter.Content.Itens.Accessories
         {
             Item.accessory = true;
         }
-        
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var p = player.GetModPlayer<Common.Players.BloodHunter>();

@@ -18,6 +18,11 @@ Buffs: {
 		DisplayName: Silver
 		Description: Mods.BloodHunter.Buffs.Silver.Description
 	}
+
+	CursedSword: {
+		DisplayName: Cursed Sword
+		Description: Mods.BloodHunter.Buffs.CursedSword.Description
+	}
 }
 
 Items: {
@@ -31,13 +36,13 @@ Items: {
 		Tooltip:
 			'''
 			Turns you into a vampire, consume this to see all the changes in your character.
-			 Recommended for magic and ranged damage.
+			Recommended for magic, Summon or ranged damage.
 			'''
 	}
 
 	SacrificialDagger: {
 		DisplayName: Sacrificial Dagger
-		Tooltip: Every 10 seconds, take damage and increase the amount of blood.
+		Tooltip: Every 25 seconds, take damage and increase the amount of blood.
 	}
 
 	TwilightShell: {
@@ -47,12 +52,16 @@ Items: {
 
 	BloodGoblet: {
 		DisplayName: Blood Goblet
-		Tooltip: ""
+		Tooltip: On drink it, your maximum blood by 10.
 	}
 
 	AdamantiteFragment: {
 		DisplayName: Adamantite Fragment
-		Tooltip: ""
+		Tooltip:
+			'''
+			Slimes got creative! This glittering fragment is their accidental masterpiece, 
+			a fashion statement straight from the underworld. Wear shades, it's dazzling!
+			'''
 	}
 
 	Sarcophagus: {
@@ -82,7 +91,6 @@ Prefixes: {
 		AdditionalTooltip: Mods.BloodHunter.Prefixes.Sacred.AdditionalTooltip
 	}
 
-	Unholy.DisplayName: Unholy
 	BloodTooltip: Mods.BloodHunter.Prefixes.BloodTooltip
 }
 

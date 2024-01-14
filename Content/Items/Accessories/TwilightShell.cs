@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BloodHunter.Content.Itens.Accessories
+namespace BloodHunter.Content.Items.Accessories
 {
     public class TwilightShell : ModItem
     {

@@ -1,7 +1,7 @@
 ﻿using BloodHunter.Common.Systems;
 using BloodHunter.Common.UI.ClassSelectionUI;
 using BloodHunter.Content.Buffs;
-using BloodHunter.Content.Itens;
+using BloodHunter.Content.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -28,7 +28,7 @@ namespace BloodHunter.Common.Players
         public int bloodMax;
         public const int defaultBloodMax = 50;
         public int bloodMax2;
-        
+
         public int getBloodCurrent;
         public int getBloodRate = 300; // 0.5 second
         public bool canGetBlood = true;

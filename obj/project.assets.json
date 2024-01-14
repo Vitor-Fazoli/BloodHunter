@@ -31,26 +31,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vhfaz\\.nuget\\packages\\": {}
+    "C:\\Users\\vhfaz_tnsgsci\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\BloodHunter\\BloodHunter.csproj",
+      "projectUniqueName": "C:\\Users\\vhfaz_tnsgsci\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BloodHunter\\BloodHunter.csproj",
       "projectName": "BloodHunter",
-      "projectPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\BloodHunter\\BloodHunter.csproj",
-      "packagesPath": "C:\\Users\\vhfaz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\BloodHunter\\obj\\",
+      "projectPath": "C:\\Users\\vhfaz_tnsgsci\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BloodHunter\\BloodHunter.csproj",
+      "packagesPath": "C:\\Users\\vhfaz_tnsgsci\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vhfaz_tnsgsci\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BloodHunter\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\vhfaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\vhfaz_tnsgsci\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -90,7 +88,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.418\\RuntimeIdentifierGraph.json"
       }
     }
   }

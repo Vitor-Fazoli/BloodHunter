@@ -10,7 +10,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BloodHunter.Content.Itens.Accessories
+namespace BloodHunter.Content.Items.Accessories
 {
     public class CursedScabbard : ModItem
     {
@@ -31,7 +31,8 @@ namespace BloodHunter.Content.Itens.Accessories
             {
                 if (p.bloodCurrent >= p.bloodMax2)
                 {
-                    Projectile.NewProjectile(new EntitySource_TileBreak(2,2),player.position + new Vector2(0, -30),Vector2.Zero, ModContent.ProjectileType<CursedSword>(),p.bloodMax2,10);
+                    player.AddBuff(ModContent.BuffType<Buffs.CursedSword>(), p.getBloodRate * 10);
+                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.position + new Vector2(0, -30), Vector2.Zero, ModContent.ProjectileType<CursedSword>(), p.bloodMax2 / 2, 5);
                     p.bloodCurrent = 0;
                 }
             }

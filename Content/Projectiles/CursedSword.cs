@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using BloodHunter.Content.Buffs;
 
 namespace BloodHunter.Content.Projectiles
 {
@@ -35,10 +36,6 @@ namespace BloodHunter.Content.Projectiles
             Projectile.penetrate = -1;
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            Projectile.ai[0] = 0;
-        }
-        public override void OnKill(int timeLeft)
         {
             Projectile.ai[0] = 0;
         }
@@ -71,15 +68,15 @@ namespace BloodHunter.Content.Projectiles
         {
             if (owner.dead || !owner.active)
             {
-                //owner.ClearBuff(ModContent.BuffType<ExampleSimpleMinionBuff>());
+                owner.ClearBuff(ModContent.BuffType<Buffs.CursedSword>());
 
                 return false;
             }
 
-            //if (owner.HasBuff(ModContent.BuffType<ExampleSimpleMinionBuff>()))
-            //{
-            //    Projectile.timeLeft = 2;
-            //}
+            if (owner.HasBuff(ModContent.BuffType<Buffs.CursedSword>()))
+            {
+                Projectile.timeLeft = 2;
+            }
 
             return true;
         }
@@ -95,19 +92,15 @@ namespace BloodHunter.Content.Projectiles
             vectorToIdlePosition = idlePosition - Projectile.Center;
             distanceToIdlePosition = vectorToIdlePosition.Length();
 
-            if (Main.myPlayer == owner.whoAmI && distanceToIdlePosition > 2000f)
+            if (Main.myPlayer == owner.whoAmI && distanceToIdlePosition > 1200f)
             {
-                // Whenever you deal with non-regular events that change the behavior or position drastically, make sure to only run the code on the owner of the projectile,
-                // and then set netUpdate to true
                 Projectile.position = idlePosition;
                 Projectile.velocity *= 0.1f;
                 Projectile.netUpdate = true;
             }
 
-            // If your minion is flying, you want to do this independently of any conditions
             float overlapVelocity = 0.04f;
 
-            // Fix overlap with other minions
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile other = Main.projectile[i];
@@ -137,7 +130,7 @@ namespace BloodHunter.Content.Projectiles
 
         private void SearchForTargets(out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter)
         {
-            distanceFromTarget = 130f;
+            distanceFromTarget = 50f;
             targetCenter = Projectile.position;
             foundTarget = false;
 
@@ -209,7 +202,7 @@ namespace BloodHunter.Content.Projectiles
             }
             else
             {
-                if (distanceToIdlePosition > 600f)
+                if (distanceToIdlePosition > 300f)
                 {
                     Projectile.rotation = Projectile.velocity.X * 0.05f;
                     speed = 12f;

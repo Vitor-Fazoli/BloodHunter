@@ -5,9 +5,9 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BloodHunter.Content.Itens
+namespace BloodHunter.Content.Items
 {
-    public class LifeEssence: ModItem
+    public class LifeEssence : ModItem
     {
         public override void SetStaticDefaults()
         {

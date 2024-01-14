@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace BloodHunter.Content.Itens.Consumables
+namespace BloodHunter.Content.Items.Consumables
 {
     public class BloodGoblet : ModItem
     {
@@ -22,7 +22,7 @@ namespace BloodHunter.Content.Itens.Consumables
 
         public override bool CanUseItem(Player player)
         {
-             Common.Players.BloodHunter p = player.GetModPlayer<Common.Players.BloodHunter>();
+            Common.Players.BloodHunter p = player.GetModPlayer<Common.Players.BloodHunter>();
 
             return p.bloodGoblet < p.MAX_BLOOD_GOBLET && p.bloodHunter;
         }

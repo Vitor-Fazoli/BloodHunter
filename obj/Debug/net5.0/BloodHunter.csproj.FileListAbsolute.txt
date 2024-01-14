@@ -1,0 +1,5 @@
+C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net5.0\BloodHunter.csproj.AssemblyReference.cache
+C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net5.0\BloodHunter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net5.0\BloodHunter.AssemblyInfoInputs.cache
+C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net5.0\BloodHunter.AssemblyInfo.cs
+C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net5.0\BloodHunter.csproj.CoreCompileInputs.cache

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BloodHunter.Content.Itens.Materials
+namespace BloodHunter.Content.Items.Materials
 {
     public class AdamantiteFragment : ModItem
     {

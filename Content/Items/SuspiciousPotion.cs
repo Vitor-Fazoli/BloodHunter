@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BloodHunter.Content.Itens
+namespace BloodHunter.Content.Items
 {
     public class SuspiciousPotion : ModItem
     {
