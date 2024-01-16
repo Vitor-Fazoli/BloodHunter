@@ -61,7 +61,7 @@ namespace BloodHunter.Common.UI.QuickBloodUI
             float quotient = (float)player.bloodCurrent / player.bloodMax2;
             quotient = Utils.Clamp(quotient, 0f, 1f);
 
-            //if (player.bloodCurrent <= player.bloodMax)
+            //if (player.bloodCurrent <= player.xpMax)
             //{
             //    text.SetText(player.bloodCurrent.ToString());
             //}

@@ -3,6 +3,7 @@ using BloodHunter.Common.UI.ClassSelectionUI;
 using BloodHunter.Content.Buffs;
 using BloodHunter.Content.Items;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
@@ -34,10 +35,10 @@ namespace BloodHunter.Common.Players
         public bool canGetBlood = true;
 
         public bool isItRanger = false;
+        public int essence = 1;
+        public int essenceMax = 10;
 
-        public int magicPassiveCooldown = 0;
-        public const int MAGIC_PASSIVE_COOLDOWN = 600 * 30;
-
+        public const int LEVEL_MAX = 10;
         public int level;
         public int countToXp;
         public int xp;
@@ -49,7 +50,6 @@ namespace BloodHunter.Common.Players
         {
             return bloodCurrent == bloodMax2;
         }
-
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             // For Ranged Weapons
@@ -63,6 +63,12 @@ namespace BloodHunter.Common.Players
                     canGetBlood = false;
                 }
             }
+
+            if (bloodHunter && target.life <= 0)
+            {
+                xp++;
+            }
+
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -104,6 +110,7 @@ namespace BloodHunter.Common.Players
 
             UpdateBuffs();
             RegenerateBlood();
+            LevelSystem();
         }
         private void ResetVariables()
         {
@@ -176,6 +183,24 @@ namespace BloodHunter.Common.Players
                         getBloodCurrent = 0;
                     }
                 }
+            }
+        }
+        private static int ToLevelUp(int level, float levelRate)
+        {
+            return (int)(50 * Math.Pow(levelRate, level - 1));
+        }
+        private static int LevelUp(int level)
+        {
+           return level++;
+        }
+        private void LevelSystem()
+        {
+            xpMax = ToLevelUp(level, 1.5f);
+
+            if (xp >= xpMax)
+            {
+                level  = LevelUp(level);
+                xp = 0;
             }
         }
         #region data saving

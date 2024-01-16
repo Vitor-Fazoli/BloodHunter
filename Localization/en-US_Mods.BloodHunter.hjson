@@ -1,7 +1,7 @@
 Buffs: {
 	BloodPlague: {
 		DisplayName: Blood Plague
-		Description: Mods.BloodHunter.Buffs.BloodPlague.Description
+		Description: "{0} / {1}"
 	}
 
 	Day: {

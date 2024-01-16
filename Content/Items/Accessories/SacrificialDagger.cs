@@ -37,7 +37,6 @@ namespace BloodHunter.Content.Items.Accessories
                 {
                     p.bloodCurrent += 5;
                     timer = 0;
-                    player.statLife -= 5;
                 }
             }
         }

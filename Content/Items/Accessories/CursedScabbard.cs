@@ -1,10 +1,5 @@
 ﻿using BloodHunter.Content.Projectiles;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -18,7 +13,6 @@ namespace BloodHunter.Content.Items.Accessories
         {
             Item.width = 32;
             Item.height = 32;
-
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
             Item.maxStack = 1;
@@ -31,7 +25,8 @@ namespace BloodHunter.Content.Items.Accessories
             {
                 if (p.bloodCurrent >= p.bloodMax2)
                 {
-                    player.AddBuff(ModContent.BuffType<Buffs.CursedSword>(), p.getBloodRate * 10);
+                    player.lifeRegenTime = 0;
+                    player.AddBuff(ModContent.BuffType<Buffs.CursedSword>(), p.getBloodRate * 5);
                     Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.position + new Vector2(0, -30), Vector2.Zero, ModContent.ProjectileType<CursedSword>(), p.bloodMax2 / 2, 5);
                     p.bloodCurrent = 0;
                 }

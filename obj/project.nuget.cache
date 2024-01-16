@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NF4L6CO3MKLparPYmWo2zC5ld7uRonAVXlPZgYRkR4g5RbxuNhKkkXB1LX0GpKvZtR0ZQ37On+Ch3Kbwm3Kq8w==",
+  "dgSpecHash": "gfnMQLSPNsqIPCKyDmKWtbEDwUWqbHpUXg5VweFpkc2h577dS5MD0/D/Ue9iszvSOo91ODqeBNfW/Aur2IGfKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vhfaz_tnsgsci\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BloodHunter\\BloodHunter.csproj",
+  "projectFilePath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\BloodHunter\\BloodHunter.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\vhfaz_tnsgsci\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+    "C:\\Users\\vhfaz\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],
   "logs": []
 }

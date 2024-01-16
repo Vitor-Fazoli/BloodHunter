@@ -74,9 +74,11 @@ namespace BloodHunter.Content.Items
         }
         public override bool OnPickup(Player player)
         {
-            int amount = 5 + Main.rand.Next(5);
+            var p = player.GetModPlayer<Common.Players.BloodHunter>();
 
-            player.GetModPlayer<Common.Players.BloodHunter>().bloodCurrent += amount;
+            int amount = p.essence;
+
+            p.bloodCurrent += amount;
             CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), new Color(200, 0, 255), amount);
             SoundEngine.PlaySound(SoundID.AbigailUpgrade, player.position);
             Item.active = false;
