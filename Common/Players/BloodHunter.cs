@@ -68,7 +68,6 @@ namespace BloodHunter.Common.Players
             {
                 xp++;
             }
-
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -111,13 +110,17 @@ namespace BloodHunter.Common.Players
             UpdateBuffs();
             RegenerateBlood();
             LevelSystem();
+            UpdateStats();
         }
         private void ResetVariables()
         {
             bloodMax2 = bloodMax;
             getBloodRate = 300;
         }
-
+        private void UpdateStats()
+        {
+            Player.GetDamage(DamageClass.Generic) += level * 0.01f;
+        }
         private void UpdateBuffs()
         {
             if (bloodHunter)
@@ -191,7 +194,14 @@ namespace BloodHunter.Common.Players
         }
         private static int LevelUp(int level)
         {
-           return level++;
+            if (level < LEVEL_MAX)
+            {
+                return level++;
+            }
+            else
+            {
+                return level;
+            }
         }
         private void LevelSystem()
         {
@@ -203,6 +213,7 @@ namespace BloodHunter.Common.Players
                 xp = 0;
             }
         }
+
         #region data saving
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
@@ -210,6 +221,8 @@ namespace BloodHunter.Common.Players
             packet.Write((byte)Player.whoAmI);
             packet.Write(bloodHunter);
             packet.Write(isItRanger);
+            packet.Write(xp);
+            packet.Write(xpMax);
             packet.Send(toWho, fromWho);
         }
         public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */
@@ -232,6 +245,9 @@ namespace BloodHunter.Common.Players
             tag["bloodGoblet"] = bloodGoblet;
             tag["eyeColor"] = eyeColor;
             tag["isItRanger"] = isItRanger;
+            tag["xp"] = xp;
+            tag["xpMax"] = xpMax;
+            tag["level"] = level;
         }
 
         public override void LoadData(TagCompound tag)
@@ -240,6 +256,9 @@ namespace BloodHunter.Common.Players
             eyeColor = tag.Get<Color>("eyeColor");
             bloodGoblet = tag.GetAsInt("bloodGoblet");
             isItRanger = tag.GetBool("isItRanger");
+            xp = tag.GetInt("xp");
+            xpMax = tag.GetInt("xpMax");
+            level = tag.GetInt("level");
         }
         #endregion
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace BloodHunter.Content.Items.Accessories
 {
@@ -18,7 +20,7 @@ namespace BloodHunter.Content.Items.Accessories
             Item.width = 32;
             Item.height = 32;
             Item.sellPrice(gold: 2);
-            Item.rare = 2;
+            Item.rare = ItemRarityID.Green;
         }
 
         public override void AddRecipes()
@@ -35,8 +37,14 @@ namespace BloodHunter.Content.Items.Accessories
             {
                 if (timer > 600)
                 {
+                    int amount = (player.statLife / 4);
+
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), CombatText.DamagedFriendly, amount);
+
                     p.bloodCurrent += 5;
                     timer = 0;
+                    p.UpdateBadLifeRegen();
+                    player.statLife -= amount;
                 }
             }
         }

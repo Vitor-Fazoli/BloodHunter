@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using log4net.Core;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -7,21 +8,21 @@ namespace BloodHunter.Content.Buffs
 {
     public class BloodPlague : ModBuff
     {
-
-        public int xp = 0;
-        public int xpMax = 50;
         public override bool RightClick(int buffIndex)
         {
             return false;
         }
-        public override LocalizedText Description => base.Description.WithFormatArgs(xp,xpMax);
 
         public override void Update(Player player, ref int buffIndex)
         {
-            var p  = player.GetModPlayer<Common.Players.BloodHunter>();
+            
+        }
 
-            xp = p.xp;
-            xpMax = p.xpMax;
+        public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
+        {
+            var p = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
+
+            tip = $"level: {p.level}\n {p.xp} / {p.xpMax} \n Damage Bonus: {p.level}%";
         }
     }
 }

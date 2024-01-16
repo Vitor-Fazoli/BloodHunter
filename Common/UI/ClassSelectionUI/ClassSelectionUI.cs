@@ -4,7 +4,6 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria;
-using ReLogic.Content;
 
 namespace BloodHunter.Common.UI.ClassSelectionUI
 {
