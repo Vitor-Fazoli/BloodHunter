@@ -27,11 +27,11 @@ namespace BloodHunter.Common.Players
         public bool bloodHunter;
         public int bloodCurrent;
         public int bloodMax;
-        public const int defaultBloodMax = 50;
+        public const int defaultBloodMax = 100;
         public int bloodMax2;
 
         public int getBloodCurrent;
-        public int getBloodRate = 300; // 0.5 second
+        public int getBloodRate = 500;
         public bool canGetBlood = true;
 
         public bool isItRanger = false;
