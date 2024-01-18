@@ -31,7 +31,7 @@ namespace BloodHunter.Common.Players
         public int bloodMax2;
 
         public int getBloodCurrent;
-        public int getBloodRate = 500;
+        public int getBloodRate = 600;
         public bool canGetBlood = true;
 
         public bool isItRanger = false;
@@ -71,7 +71,7 @@ namespace BloodHunter.Common.Players
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (proj.DamageType == DamageClass.Ranged && hit.Crit && isItRanger)
+            if (proj.DamageType == DamageClass.Ranged && canGetBlood && isItRanger)
             {
                 if (target.type != NPCID.TargetDummy)
                 {
@@ -115,7 +115,7 @@ namespace BloodHunter.Common.Players
         private void ResetVariables()
         {
             bloodMax2 = bloodMax;
-            getBloodRate = 300;
+            getBloodRate = 600;
         }
         private void UpdateStats()
         {
@@ -179,7 +179,7 @@ namespace BloodHunter.Common.Players
 
                 if (bloodCurrent < bloodMax2)
                 {
-                    if (getBloodCurrent >= getBloodRate / 6)
+                    if (getBloodCurrent >= getBloodRate / 5)
                     {
                         bloodCurrent += 1;
 
@@ -196,7 +196,7 @@ namespace BloodHunter.Common.Players
         {
             if (level < LEVEL_MAX)
             {
-                return level++;
+                return level+=1;
             }
             else
             {

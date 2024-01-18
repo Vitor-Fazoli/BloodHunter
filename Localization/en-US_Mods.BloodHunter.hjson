@@ -78,6 +78,26 @@ Items: {
 		DisplayName: Cursed Scabbard
 		Tooltip: ""
 	}
+
+	HunterBelt: {
+		DisplayName: Hunter Belt
+		Tooltip: ""
+	}
+
+	BlessedOil: {
+		DisplayName: Blessed Oil
+		Tooltip: ""
+	}
+
+	DarkHarpyWings: {
+		DisplayName: Dark Harpy Wings
+		Tooltip: ""
+	}
+
+	WoodenDartThrower: {
+		DisplayName: Wooden Dart Thrower
+		Tooltip: ""
+	}
 }
 
 Prefixes: {
@@ -92,6 +112,11 @@ Prefixes: {
 	}
 
 	BloodTooltip: Mods.BloodHunter.Prefixes.BloodTooltip
+
+	Blessed: {
+		AdditionalTooltip: Mods.BloodHunter.Prefixes.Blessed.AdditionalTooltip
+		DisplayName: Blessed
+	}
 }
 
 Keybinds.RandomBuff.DisplayName: Random Buff

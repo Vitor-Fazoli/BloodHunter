@@ -93,11 +93,11 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                 {
                     if (player.isItRanger)
                     {
-                        Main.instance.MouseText("Ranger: All critical hits generate life essence for you\n Click to change your passive class", 0, 0);
+                        Main.instance.MouseText("Artemis Seal: All hits generate life essence for you", 0, 0);
                     }
                     else
                     {
-                        Main.instance.MouseText("Magic: While you have blood, use it as your mana, but at half the cost\nClick to change your passive class", 0, 0);
+                        Main.instance.MouseText("Chronos Seal: While you have blood, use it as your mana, but at half the cost\nClick to change your passive class", 0, 0);
                     }
                 }
             }
