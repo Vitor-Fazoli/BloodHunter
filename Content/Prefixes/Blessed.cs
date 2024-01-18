@@ -1,15 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Prefixes
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class Sacred : ModPrefix
+    public class Blessed : ModPrefix
     {
         public virtual float Power => 1f;
 

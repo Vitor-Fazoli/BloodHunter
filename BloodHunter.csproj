@@ -23,6 +23,7 @@
     <None Remove="Content\Buffs\BloodPlague.png" />
     <None Remove="Content\Buffs\Day.png" />
     <None Remove="Content\Buffs\Night.png" />
+    <None Remove="Content\Items\Accessories\HunterBelt.png" />
     <None Remove="Content\Itens\Accessories\CursedScabbard.png" />
     <None Remove="Content\Itens\Accessories\SacrificialDagger.png" />
     <None Remove="Content\Itens\Accessories\Sarcophagus.png" />
