@@ -98,6 +98,26 @@ Items: {
 		DisplayName: Wooden Dart Thrower
 		Tooltip: ""
 	}
+
+	DarkEmbraceWings: {
+		DisplayName: Dark Embrace Wings
+		Tooltip: ""
+	}
+
+	EclipseFeathers: {
+		DisplayName: Eclipse Feathers
+		Tooltip: ""
+	}
+
+	TwilightEmberPlumes: {
+		DisplayName: Twilight Ember Plumes
+		Tooltip: ""
+	}
+
+	PlatinumDartThrower: {
+		DisplayName: Platinum Dart Thrower
+		Tooltip: ""
+	}
 }
 
 Prefixes: {

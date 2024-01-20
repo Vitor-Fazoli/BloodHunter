@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace BloodHunter.Content.Items.Accessories
 {
     [AutoloadEquip(EquipType.Wings)]
-    public class DarkHarpyWings : ModItem
+    public class TwilightEmberPlumes : ModItem
     {
         // To see how this config option was added, see ExampleModConfig.cs
         //public override bool IsLoadingEnabled(Mod mod)
@@ -30,7 +30,7 @@ namespace BloodHunter.Content.Items.Accessories
             Item.width = 22;
             Item.height = 20;
             Item.value = 10000;
-            Item.rare = ModContent.RarityType<TwillightRed>();
+            Item.rare = ModContent.RarityType<TwilightRed>();
             Item.accessory = true;
         }
 

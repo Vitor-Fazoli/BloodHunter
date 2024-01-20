@@ -39,14 +39,14 @@ namespace BloodHunter.Content.Buffs
 
                 Player.lifeRegen -= 2;
 
-                Player.GetDamage(DamageClass.Generic) += 01f;
+                Player.GetDamage(DamageClass.Generic) += 0.01f;
             }
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
             if (Day)
             {
-                if (Main.rand.Next(10) < 2)
+                if (Main.rand.Next(10) < 1)
                 {
                     int dust = Dust.NewDust(Player.position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustID.Torch, 0, -1.86f, 100, Color.White, 1.2f);
                     Main.dust[dust].noGravity = true;

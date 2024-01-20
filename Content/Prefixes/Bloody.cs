@@ -22,7 +22,7 @@ namespace BloodHunter.Content.Prefixes
 
         public override bool CanRoll(Item item)
         {
-            return Main.LocalPlayer.GetModPlayer < Common.Players.BloodHunter>().bloodHunter;
+            return Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>().bloodHunter;
         }
 
         public override void ModifyValue(ref float valueMult)

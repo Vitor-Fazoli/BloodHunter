@@ -12,7 +12,7 @@ using Terraria.DataStructures;
 
 namespace BloodHunter.Content.Items.Weapons
 {
-    public class WoodenDartThrower : ModItem
+    public class PlatinumDartThrower : ModItem
     {
         //todo: Create a abstract class to inherit from for all Dart Throwers
         public override void SetDefaults()
@@ -31,13 +31,13 @@ namespace BloodHunter.Content.Items.Weapons
 
             // Weapon Properties
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 2;
+            Item.damage = 8;
             Item.knockBack = 0.1f;
             Item.noMelee = true;
 
             // Dart Thrower Properties
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 10.5f;
+            Item.shootSpeed = 10.8f;
             Item.useAmmo = AmmoID.Arrow;
         }
     }
