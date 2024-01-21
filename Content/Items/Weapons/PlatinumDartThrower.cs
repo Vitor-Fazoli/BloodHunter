@@ -32,13 +32,17 @@ namespace BloodHunter.Content.Items.Weapons
             // Weapon Properties
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 8;
-            Item.knockBack = 0.1f;
+            Item.knockBack = 0.5f;
             Item.noMelee = true;
 
             // Dart Thrower Properties
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 10.8f;
+            Item.shootSpeed = 9f;
             Item.useAmmo = AmmoID.Arrow;
+        }
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
         }
     }
 }

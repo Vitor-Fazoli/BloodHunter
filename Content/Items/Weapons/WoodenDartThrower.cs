@@ -9,12 +9,12 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using BloodHunter.Common.Systems;
 
 namespace BloodHunter.Content.Items.Weapons
 {
-    public class WoodenDartThrower : ModItem
+    public class WoodenDartThrower : DartThrower
     {
-        //todo: Create a abstract class to inherit from for all Dart Throwers
         public override void SetDefaults()
         {
             // Common Properties
@@ -37,7 +37,7 @@ namespace BloodHunter.Content.Items.Weapons
 
             // Dart Thrower Properties
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 10.5f;
+            Item.shootSpeed = 9f;
             Item.useAmmo = AmmoID.Arrow;
         }
     }

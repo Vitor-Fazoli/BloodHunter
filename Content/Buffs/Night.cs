@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Buffs
 {
+    //todo: Rename the buff to InTheShadows, because make more sense
     public class Night : ModBuff
     {
         public override bool RightClick(int buffIndex) => false;
