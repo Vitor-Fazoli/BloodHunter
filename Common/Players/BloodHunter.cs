@@ -25,6 +25,7 @@ namespace BloodHunter.Common.Players
 
         public Color eyeColor;
         public bool bloodHunter;
+        public bool blessedhunter;
         public int bloodCurrent;
         public int bloodMax;
         public const int defaultBloodMax = 100;
@@ -111,11 +112,20 @@ namespace BloodHunter.Common.Players
             RegenerateBlood();
             LevelSystem();
             UpdateStats();
+            UpdateBlessed();
         }
         private void ResetVariables()
         {
             bloodMax2 = bloodMax;
             getBloodRate = 600;
+            blessedhunter = false;
+        }
+        private void UpdateBlessed()
+        {
+            if (bloodMax2 <= 5)
+            {
+                blessedhunter = true;
+            }
         }
         private void UpdateStats()
         {

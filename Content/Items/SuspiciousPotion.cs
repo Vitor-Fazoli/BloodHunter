@@ -8,6 +8,7 @@ namespace BloodHunter.Content.Items
 {
     public class SuspiciousPotion : ModItem
     {
+        //todo: need to make a effect when drinked
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
