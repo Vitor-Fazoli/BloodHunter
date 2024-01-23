@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria;
 
 namespace BloodHunter.Common.UI.ClassSelectionUI
 {
@@ -22,7 +22,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         {
             rangerIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/RangerIcon");
             magicIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/MagicIcon");
-            
+
             icon = new UIImage(rangerIcon);
             icon.Left.Set(3, Precent);
             icon.Top.Set((Main.screenHeight / 2.4f), Precent);
@@ -81,7 +81,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
             }
 
 
-            
+
 
             if (icon.IsMouseHovering)
             {
@@ -101,7 +101,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                     }
                 }
             }
-            
+
 
             base.Update(gameTime);
         }

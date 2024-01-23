@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using BloodHunter.Content.Items.Materials;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using BloodHunter.Content.Items.Materials;
 
 namespace BloodHunter.Common.GlobalNPCs
 {

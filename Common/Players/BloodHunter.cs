@@ -1,12 +1,9 @@
-﻿using BloodHunter.Common.Systems;
-using BloodHunter.Common.UI.ClassSelectionUI;
-using BloodHunter.Content.Buffs;
+﻿using BloodHunter.Content.Buffs;
 using BloodHunter.Content.Items;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -206,7 +203,7 @@ namespace BloodHunter.Common.Players
         {
             if (level < LEVEL_MAX)
             {
-                return level+=1;
+                return level += 1;
             }
             else
             {
@@ -219,7 +216,7 @@ namespace BloodHunter.Common.Players
 
             if (xp >= xpMax)
             {
-                level  = LevelUp(level);
+                level = LevelUp(level);
                 xp = 0;
             }
         }

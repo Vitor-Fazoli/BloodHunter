@@ -118,6 +118,11 @@ Items: {
 		DisplayName: Platinum Dart Thrower
 		Tooltip: ""
 	}
+
+	BloodAltar: {
+		DisplayName: Blood Altar
+		Tooltip: ""
+	}
 }
 
 Prefixes: {

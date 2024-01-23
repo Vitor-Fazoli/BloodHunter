@@ -1,7 +1,7 @@
-﻿using Terraria.ID;
+﻿using BloodHunter.Content.Items;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
-using BloodHunter.Content.Items;
 
 namespace BloodHunter.Common.Systems
 {

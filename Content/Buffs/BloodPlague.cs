@@ -1,7 +1,4 @@
-﻿using log4net.Core;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.Localization;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Buffs
@@ -15,7 +12,7 @@ namespace BloodHunter.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            
+
         }
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
