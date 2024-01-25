@@ -78,9 +78,7 @@ namespace BloodHunter.Content.Items
 
             int amount = p.essence;
 
-            p.bloodCurrent += amount;
-            CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), new Color(200, 0, 255), amount);
-            SoundEngine.PlaySound(SoundID.AbigailUpgrade, player.position);
+            p.ReceiveBlood(player, amount);
             Item.active = false;
             return false;
         }

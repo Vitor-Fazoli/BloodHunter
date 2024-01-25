@@ -3,6 +3,7 @@ using BloodHunter.Content.Items;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,8 +34,8 @@ namespace BloodHunter.Common.Players
         public bool canGetBlood = true;
 
         public bool isItRanger = false;
-        public int essence = 1;
-        public int essenceMax = 10;
+        public int essence = 5;
+        public int essenceMax = 20;
 
         public const int LEVEL_MAX = 10;
         public int level;
@@ -194,6 +195,12 @@ namespace BloodHunter.Common.Players
                     }
                 }
             }
+        }
+        public void ReceiveBlood(Player player,int amount)
+        {
+            bloodCurrent += amount;
+            CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), new Color(200, 0, 255), amount, true);
+            SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, player.position);
         }
         private static int ToLevelUp(int level, float levelRate)
         {

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace BloodHunter.Content.Items.Accessories
 {
@@ -17,11 +18,6 @@ namespace BloodHunter.Content.Items.Accessories
             Item.rare = ItemRarityID.Green;
         }
 
-        public override void AddRecipes()
-        {
-
-        }
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             Common.Players.BloodHunter p = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
@@ -29,16 +25,14 @@ namespace BloodHunter.Content.Items.Accessories
             timer++;
             if (!p.IsBloodFull())
             {
-                if (timer > 600)
+                if (timer > 1200)
                 {
-                    int amount = (player.statLife / 4);
-
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), CombatText.DamagedFriendly, amount);
-
-                    p.bloodCurrent += 5;
-                    timer = 0;
+                    int amount = player.statLife / 4;
+                    p.ReceiveBlood(player, 5);
                     p.UpdateBadLifeRegen();
-                    player.statLife -= amount;
+                    player.Hurt(PlayerDeathReason.LegacyDefault(), amount, 0, false);
+
+                    timer = 0;
                 }
             }
         }

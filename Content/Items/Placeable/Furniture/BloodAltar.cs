@@ -18,8 +18,6 @@ namespace BloodHunter.Content.Items.Placeable.Furniture
         }
         public override void OnCreated(ItemCreationContext context)
         {
-
-            Main.LocalPlayer.statLife /= 2;
             for (int i = 0; i < 50; i++)
             {
                 Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);

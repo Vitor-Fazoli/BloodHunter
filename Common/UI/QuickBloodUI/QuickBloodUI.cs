@@ -23,19 +23,12 @@ namespace BloodHunter.Common.UI.QuickBloodUI
             point.Height.Set(42, Precent);
 
             frame = new UIImage(ModContent.Request<Texture2D>("BloodHunter/Assets/BloodFrame"));
-            frame.Left.Set(460, Precent);
-            frame.Top.Set(20, Precent);
+            frame.Left.Set(Main.screenWidth * 1.05f, Precent);
+            frame.Top.Set(370, Precent);
             frame.Width.Set(50, Precent);
             frame.Height.Set(42, Precent);
 
-            //text = new UIText("");
-            //text.Width.Set(50, Precent);
-            //text.Height.Set(42, Precent);
-            //text.Left.Set(0, Precent);
-            //text.Top.Set(55, Precent);
-
             frame.Append(point);
-            //frame.Append(text);
             Append(frame);
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -75,9 +68,6 @@ namespace BloodHunter.Common.UI.QuickBloodUI
                 Main.instance.MouseText(player.bloodCurrent + "/" + player.bloodMax2);
             }
 
-
-            frame.Left.Set(20, Precent);
-            frame.Top.Set(Main.screenHeight / 3.2f, Precent);
             point.ImageScale = quotient;
 
 
