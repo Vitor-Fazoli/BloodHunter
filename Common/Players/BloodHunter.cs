@@ -17,6 +17,8 @@ namespace BloodHunter.Common.Players
     public class BloodHunter : ModPlayer
     {
         public bool sunResistance;
+        public bool transforming = false;
+
 
         public readonly int MAX_BLOOD_GOBLET = 5;
         public int bloodGoblet = 0;
@@ -26,15 +28,17 @@ namespace BloodHunter.Common.Players
         public bool blessedhunter;
         public int bloodCurrent;
         public int bloodMax;
-        public const int defaultBloodMax = 100;
+        public const int rangerBloodMax = 80;
+        public const int magicBloodMax = 150;
         public int bloodMax2;
 
         public int getBloodCurrent;
         public int getBloodRate = 600;
         public bool canGetBlood = true;
 
+        public bool DemonicMode = false;
         public bool isItRanger = false;
-        public int essence = 5;
+        public int essence = 40;
         public int essenceMax = 20;
 
         public const int LEVEL_MAX = 10;
@@ -44,6 +48,7 @@ namespace BloodHunter.Common.Players
         public int xpMax;
 
         public int classCooldown = 0;
+        private int transformingAI = 0;
 
         public bool IsBloodFull()
         {
@@ -91,7 +96,8 @@ namespace BloodHunter.Common.Players
         }
         public override void Initialize()
         {
-            bloodMax = defaultBloodMax;
+            bloodMax = isItRanger ? rangerBloodMax : magicBloodMax;
+            transformingAI = 0;
         }
         public override void UpdateDead()
         {
@@ -111,12 +117,15 @@ namespace BloodHunter.Common.Players
             LevelSystem();
             UpdateStats();
             UpdateBlessed();
+            InitialTransforming();
         }
         private void ResetVariables()
         {
-            bloodMax2 = bloodMax;
+            bloodMax2 = isItRanger ? rangerBloodMax : magicBloodMax;
+
             getBloodRate = 600;
             blessedhunter = false;
+            DemonicMode = false;
         }
         private void UpdateBlessed()
         {
@@ -128,6 +137,30 @@ namespace BloodHunter.Common.Players
         private void UpdateStats()
         {
             Player.GetDamage(DamageClass.Generic) += level * 0.01f;
+        }
+        private void InitialTransforming()
+        {
+            if (transforming)
+            {
+                transformingAI++;
+
+
+                Player.gravity = -0.07f;
+                Player.velocity.X = 0;
+
+
+                if (transformingAI >= 50)
+                {
+                    for (int i = 0; i < 200; i++)
+                    {
+                        Vector2 speed = Main.rand.NextVector2CircularEdge(2f, 2f);
+                        Dust d = Dust.NewDustPerfect(Main.LocalPlayer.Center, DustID.Blood, speed * 5, Scale: 1.5f);
+                        d.noGravity = true;
+                    }
+                    transforming = false;
+                    Player.gravity = Player.defaultGravity;
+                }
+            }
         }
         private void UpdateBuffs()
         {
@@ -143,10 +176,12 @@ namespace BloodHunter.Common.Players
                         canGetBlood = true;
                     }
 
-                    if (bloodCurrent >= bloodMax && classCooldown <= 0)
+                    if (bloodCurrent >= bloodMax2)
                     {
-                        Player.AddBuff(BuffID.Inferno, 60 * 30);
+                        Player.AddBuff(ModContent.BuffType<Malediction>(), getBloodRate * 2);
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Player.position + new Vector2(0, -30), Vector2.Zero, ModContent.ProjectileType<Content.Projectiles.Malediction>(), bloodMax2 / 10, 0);
                         bloodCurrent = 0;
+                        DemonicMode = true;
                     }
                 }
 

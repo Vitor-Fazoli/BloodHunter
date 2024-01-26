@@ -23,8 +23,8 @@ namespace BloodHunter.Common.UI.QuickBloodUI
             point.Height.Set(42, Precent);
 
             frame = new UIImage(ModContent.Request<Texture2D>("BloodHunter/Assets/BloodFrame"));
-            frame.Left.Set(Main.screenWidth * 1.05f, Precent);
-            frame.Top.Set(370, Precent);
+            frame.Left.Set(Main.screenWidth / 3.3f, Precent);
+            frame.Top.Set(20, Precent);
             frame.Width.Set(50, Precent);
             frame.Height.Set(42, Precent);
 
@@ -53,6 +53,17 @@ namespace BloodHunter.Common.UI.QuickBloodUI
 
             float quotient = (float)player.bloodCurrent / player.bloodMax2;
             quotient = Utils.Clamp(quotient, 0f, 1f);
+
+            if (Main.playerInventory)
+            {
+                frame.Left.Set(Main.screenWidth / 3.4f, Precent);
+                frame.Top.Set(90, Precent);
+            }
+            else
+            {
+                frame.Left.Set(Main.screenWidth / 4, Precent);
+                frame.Top.Set(20, Precent);
+            }
 
             //if (player.bloodCurrent <= player.xpMax)
             //{

@@ -24,8 +24,8 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
             magicIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/MagicIcon");
 
             icon = new UIImage(rangerIcon);
-            icon.Left.Set(3, Precent);
-            icon.Top.Set((Main.screenHeight / 2.4f), Precent);
+            icon.Left.Set(Main.screenWidth / 2.7f, Precent);
+            icon.Top.Set(140, Precent);
             icon.Width.Set(30, Precent);
             icon.Height.Set(30, Precent);
 
@@ -41,7 +41,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         public override void Draw(SpriteBatch spriteBatch)
         {
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
-            if (!player.bloodHunter)
+            if (!player.bloodHunter || !Main.playerInventory)
                 return;
 
             base.Draw(spriteBatch);
@@ -56,6 +56,8 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         }
         public override void Update(GameTime gameTime)
         {
+
+
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
 
             if (player.isItRanger)
@@ -80,28 +82,17 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                 text.SetText("");
             }
 
-
-
-
             if (icon.IsMouseHovering)
             {
-                if (player.classCooldown >= 0)
+                if (player.isItRanger)
                 {
-                    Main.instance.MouseText("Cooldown in progress");
+                    Main.instance.MouseText("Artemis Seal: All hits generate life essence for you", 0, 0);
                 }
                 else
                 {
-                    if (player.isItRanger)
-                    {
-                        Main.instance.MouseText("Artemis Seal: All hits generate life essence for you", 0, 0);
-                    }
-                    else
-                    {
-                        Main.instance.MouseText("Chronos Seal: While you have blood, use it as your mana, but at half the cost\nClick to change your passive class", 0, 0);
-                    }
+                    Main.instance.MouseText("Chronos Seal: While you have blood, use it as your mana, but at half the cost\nClick to change your passive class", 0, 0);
                 }
             }
-
 
             base.Update(gameTime);
         }
@@ -114,11 +105,13 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                 {
                     icon.SetImage(magicIcon);
                     player.isItRanger = false;
+                    player.ResetEffects();  
                 }
                 else
                 {
                     icon.SetImage(rangerIcon);
                     player.isItRanger = true;
+                    player.ResetEffects();
                 }
 
                 player.classCooldown = COOLDOWN_MAX;

@@ -30,7 +30,6 @@
     <None Remove="Content\Items\Accessories\DarkHarpyWings_Wings.png" />
     <None Remove="Content\Items\Accessories\HunterBelt.png" />
     <None Remove="Content\Items\Placeable\Furniture\BloodAltar.png" />
-    <None Remove="Content\Items\Weapons\WoodenDartThrower.png" />
     <None Remove="Content\Itens\Accessories\CursedScabbard.png" />
     <None Remove="Content\Itens\Accessories\SacrificialDagger.png" />
     <None Remove="Content\Itens\Accessories\Sarcophagus.png" />
@@ -39,6 +38,7 @@
     <None Remove="Content\Itens\LifeEssence.png" />
     <None Remove="Content\Itens\SuspiciousPotion.png" />
     <None Remove="Content\Projectiles\CursedSword.png" />
+    <None Remove="Content\Projectiles\Malediction.png" />
     <None Remove="Content\Tiles\BloodAltar.png" />
   </ItemGroup>
   <ItemGroup>

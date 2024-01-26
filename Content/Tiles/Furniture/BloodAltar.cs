@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -28,7 +29,11 @@ namespace BloodHunter.Content.Tiles.Furniture
         }
         public override bool RightClick(int x, int y)
         {
-            Main.NewText("be careful");
+            var p = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
+
+            //Aparecer tela para escolher especialização
+
+            p.transforming = true;
             return true;
         }
     }

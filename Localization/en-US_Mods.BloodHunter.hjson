@@ -23,6 +23,11 @@ Buffs: {
 		DisplayName: Cursed Sword
 		Description: Mods.BloodHunter.Buffs.CursedSword.Description
 	}
+
+	Malediction: {
+		DisplayName: Malediction
+		Description: Mods.BloodHunter.Buffs.Malediction.Description
+	}
 }
 
 Items: {
@@ -145,4 +150,8 @@ Prefixes: {
 }
 
 Keybinds.RandomBuff.DisplayName: Random Buff
-Projectiles.CursedSword.DisplayName: Cursed Sword
+
+Projectiles: {
+	CursedSword.DisplayName: Cursed Sword
+	Malediction.DisplayName: Malediction
+}
