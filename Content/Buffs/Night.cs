@@ -28,11 +28,13 @@ namespace BloodHunter.Content.Buffs
         }
         public override void UpdateBadLifeRegen()
         {
+            var bloodHunter = Player.GetModPlayer<Common.Players.BloodHunter>();
+
             if (night)
             {
-                Player.moveSpeed += 0.3f;
+                Player.moveSpeed += 0.05f * (1 + bloodHunter.level);
 
-                Player.GetDamage(DamageClass.Generic) += 0.2f;
+                Player.GetDamage(DamageClass.Generic) += 0.05f * (1 + bloodHunter.level);
 
                 Player.nightVision = true;
 

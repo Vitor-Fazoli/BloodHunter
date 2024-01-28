@@ -1,42 +1,50 @@
 Buffs: {
-	BloodPlague: {
+	BloodPlague: 
+	{
 		DisplayName: Blood Plague
 		Description: "{0} / {1}"
 	}
 
-	Day: {
+	Day: 
+	{
 		DisplayName: Day
 		Description: Takes constant damage while in light
 	}
 
-	Night: {
+	Night: 
+	{
 		DisplayName: Night
-		Description: Mods.BloodHunter.Buffs.Night.Description
+		Description: Improves vision, 5% increased damage, provides life regeneration and 5% increased movement speed
 	}
 
-	Silver: {
+	Silver: 
+	{
 		DisplayName: Silver
 		Description: Mods.BloodHunter.Buffs.Silver.Description
 	}
 
-	CursedSword: {
+	CursedSword: 
+	{
 		DisplayName: Cursed Sword
 		Description: Mods.BloodHunter.Buffs.CursedSword.Description
 	}
 
-	Malediction: {
+	Malediction: 
+	{
 		DisplayName: Malediction
 		Description: Mods.BloodHunter.Buffs.Malediction.Description
 	}
 }
 
 Items: {
-	LifeEssence: {
+	LifeEssence: 
+	{
 		DisplayName: Life Essence
 		Tooltip: The essence of life, which converts into blood when picked up.
 	}
 
-	SuspiciousPotion: {
+	SuspiciousPotion: 
+	{
 		DisplayName: Suspicious Potion
 		Tooltip:
 			'''
@@ -45,22 +53,26 @@ Items: {
 			'''
 	}
 
-	SacrificialDagger: {
+	SacrificialDagger: 
+	{
 		DisplayName: Sacrificial Dagger
 		Tooltip: Every 25 seconds, take damage and increase the amount of blood.
 	}
 
-	TwilightShell: {
+	TwilightShell: 
+	{
 		DisplayName: Twilight Shell
 		Tooltip: While you have blood, all damage is dealt to the amount of blood instead of your life.
 	}
 
-	BloodGoblet: {
+	BloodGoblet: 
+	{
 		DisplayName: Blood Goblet
 		Tooltip: On drink it, your maximum blood by 10.
 	}
 
-	AdamantiteFragment: {
+	AdamantiteFragment: 
+	{
 		DisplayName: Adamantite Fragment
 		Tooltip:
 			'''
@@ -69,7 +81,8 @@ Items: {
 			'''
 	}
 
-	Sarcophagus: {
+	Sarcophagus: 
+	{
 		DisplayName: Sarcophagus
 		Tooltip:
 			'''
@@ -79,32 +92,38 @@ Items: {
 			'''
 	}
 
-	CursedScabbard: {
+	CursedScabbard: 
+	{
 		DisplayName: Cursed Scabbard
 		Tooltip: ""
 	}
 
-	HunterBelt: {
+	HunterBelt: 
+	{
 		DisplayName: Hunter Belt
 		Tooltip: ""
 	}
 
-	BlessedOil: {
+	BlessedOil: 
+	{
 		DisplayName: Blessed Oil
 		Tooltip: ""
 	}
 
-	DarkHarpyWings: {
+	DarkHarpyWings: 
+	{
 		DisplayName: Dark Harpy Wings
 		Tooltip: ""
 	}
 
-	WoodenDartThrower: {
+	WoodenDartThrower: 
+	{
 		DisplayName: Wooden Dart Thrower
 		Tooltip: ""
 	}
 
-	DarkEmbraceWings: {
+	DarkEmbraceWings: 
+	{
 		DisplayName: Dark Embrace Wings
 		Tooltip: ""
 	}
@@ -126,6 +145,11 @@ Items: {
 
 	BloodAltar: {
 		DisplayName: Blood Altar
+		Tooltip: ""
+	}
+
+	Hellsing454Casull: {
+		DisplayName: Hellsing .454 Casull
 		Tooltip: ""
 	}
 }
