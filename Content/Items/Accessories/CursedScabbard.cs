@@ -20,14 +20,14 @@ namespace BloodHunter.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var p = player.GetModPlayer<Common.Players.BloodHunter>();
+            var v = player.GetModPlayer<Common.Players.BloodHunter>();
 
-            if (p.isBloodHunter)
+            if (v.isBloodHunter)
             {
-                if (p.bloodCurrent >= p.bloodMax2)
+                if (v.bloodCurrent >= v.bloodMax2)
                 {
                     player.lifeRegenTime = 0;
-                    player.AddBuff(ModContent.BuffType<Buffs.CursedSword>(), p.getBloodRate * 5);
+                    player.AddBuff(ModContent.BuffType<Buffs.CursedSword>(), 500 + (v.GET_BLOOD_RATE_MAX - v.getBloodRate));
 
                     for (int i = 0; i < 50; i++)
                     {
@@ -36,9 +36,9 @@ namespace BloodHunter.Content.Items.Accessories
                         d.noGravity = true;
                     }
                     SoundEngine.PlaySound(SoundID.Item44, player.position + new Vector2(0, -30));
-                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.position + new Vector2(0, -30), Vector2.Zero, ModContent.ProjectileType<CursedSword>(), p.bloodMax2 / 2, 5);
+                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.position + new Vector2(0, -30), Vector2.Zero, ModContent.ProjectileType<CursedSword>(), v.bloodMax2 / 2, 5);
 
-                    p.bloodCurrent = 0;
+                    v.bloodCurrent = 0;
                 }
             }
         }

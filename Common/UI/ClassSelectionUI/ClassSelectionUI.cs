@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BloodHunter.Common.Players;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -14,9 +15,6 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         private UIText text;
         private ReLogic.Content.Asset<Texture2D> rangerIcon;
         private ReLogic.Content.Asset<Texture2D> magicIcon;
-
-        private readonly int cooldown;
-        private const int COOLDOWN_MAX = 60 * 30;
 
         public override void OnInitialize()
         {
@@ -60,7 +58,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
 
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
 
-            if (player.isItRanger)
+            if (player.specialization == Specialization.SanguineMarksman)
             {
                 icon.SetImage(rangerIcon);
             }
@@ -69,53 +67,20 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                 icon.SetImage(magicIcon);
             }
 
-
-            if (player.classCooldown >= 0)
-            {
-                text.SetText((player.classCooldown / 60).ToString());
-                icon.Color = Color.Gray;
-                player.classCooldown--;
-            }
-            else
-            {
-                icon.Color = Color.White;
-                text.SetText("");
-            }
+            icon.Color = Color.White;
+            text.SetText("");
+            
 
             if (icon.IsMouseHovering)
             {
-                if (player.isItRanger)
-                {
-                    Main.instance.MouseText("Artemis Seal: All hits generate life essence for you", 0, 0);
-                }
-                else
-                {
-                    Main.instance.MouseText("Chronos Seal: While you have blood, use it as your mana, but at half the cost\nClick to change your passive class", 0, 0);
-                }
+               
             }
 
             base.Update(gameTime);
         }
         public override void LeftClick(UIMouseEvent evt)
         {
-            if (cooldown <= 0 && icon.IsMouseHovering)
-            {
-                var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
-                if (player.isItRanger)
-                {
-                    icon.SetImage(magicIcon);
-                    player.isItRanger = false;
-                    player.ResetEffects();
-                }
-                else
-                {
-                    icon.SetImage(rangerIcon);
-                    player.isItRanger = true;
-                    player.ResetEffects();
-                }
 
-                player.classCooldown = COOLDOWN_MAX;
-            }
         }
     }
 }

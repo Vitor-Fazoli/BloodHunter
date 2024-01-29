@@ -33,6 +33,13 @@ namespace BloodHunter.Content.Items.Accessories
             Item.accessory = true;
         }
 
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            var p = player.GetModPlayer<Common.Players.BloodHunter>();
+
+            p.getBloodRate -= 590;
+        }
+
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {

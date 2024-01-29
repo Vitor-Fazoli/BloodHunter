@@ -27,6 +27,7 @@ namespace BloodHunter.Common.Players
 
         public int getBloodCurrent;
         public int getBloodRate = 600;
+        public readonly int GET_BLOOD_RATE_MAX = 600;
         public bool canGetBlood = true;
 
         public const int LEVEL_MAX = 10;
@@ -58,6 +59,8 @@ namespace BloodHunter.Common.Players
         }
         public override void PostUpdateMiscEffects()
         {
+            specialization = Specialization.SanguineMarksman;
+
             bloodCurrent = Utils.Clamp(bloodCurrent, 0, bloodMax2);
             Player.eyeColor = new Color(255, 0, 0);
 

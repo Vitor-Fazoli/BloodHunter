@@ -35,7 +35,7 @@ namespace BloodHunter.Common.Players
             {
                 if (v.bloodCurrent >= v.bloodMax2)
                 {
-                    Player.AddBuff(ModContent.BuffType<Malediction>(), v.getBloodRate * 2);
+                    Player.AddBuff(ModContent.BuffType<Malediction>(), 300 + (v.GET_BLOOD_RATE_MAX - v.getBloodRate));
                     Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Player.position + new Vector2(0, -30), Vector2.Zero, ModContent.ProjectileType<Content.Projectiles.Malediction>(), v.bloodMax2 / 10, 0);
                     v.bloodCurrent = 0;
                 }

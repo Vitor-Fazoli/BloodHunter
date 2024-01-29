@@ -26,6 +26,8 @@ namespace BloodHunter.Common.Players
                 if (v.canGetBlood)
                 {
                     v.bloodCurrent += (1 + darkBloodBonus);
+
+                    v.canGetBlood = false;
                 }
             }
         }
