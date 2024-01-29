@@ -1,45 +1,33 @@
 ﻿using BloodHunter.Content.Buffs;
-using BloodHunter.Content.Items;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace BloodHunter.Common.Players
 {
-    /// <summary>
-    /// This is an archetype of a new branch for the magic and ranged classes that will change the way they play.
-    /// </summary>
+
+    public struct Specialization
+    {
+        public const short SanguineMarksman = 01;
+        public const short DarkbloodMagus = 02;
+    }
     public class BloodHunter : ModPlayer
     {
         public bool sunResistance;
-        public bool transforming = false;
-
-
-        public readonly int MAX_BLOOD_GOBLET = 5;
-        public int bloodGoblet = 0;
 
         public Color eyeColor;
-        public bool bloodHunter;
-        public bool blessedhunter;
+        public bool isBloodHunter;
         public int bloodCurrent;
         public int bloodMax;
-        public const int rangerBloodMax = 80;
-        public const int magicBloodMax = 150;
         public int bloodMax2;
 
         public int getBloodCurrent;
         public int getBloodRate = 600;
         public bool canGetBlood = true;
-
-        public bool DemonicMode = false;
-        public bool isItRanger = false;
-        public int essence = 40;
-        public int essenceMax = 20;
 
         public const int LEVEL_MAX = 10;
         public int level;
@@ -47,57 +35,18 @@ namespace BloodHunter.Common.Players
         public int xp;
         public int xpMax;
 
-        public int classCooldown = 0;
-        private int transformingAI = 0;
+        public short specialization = Specialization.SanguineMarksman;
+
+        public bool transforming;
+        private int transformingAI;
 
         public bool IsBloodFull()
         {
             return bloodCurrent == bloodMax2;
         }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            // For Ranged Weapons
-            if (bloodHunter && canGetBlood && isItRanger)
-            {
-                if (target.type != NPCID.TargetDummy)
-                {
-                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 2 + Main.rand.Next(2)), new Vector2(
-                       0, -2), ModContent.ItemType<LifeEssence>(), 1);
-
-                    canGetBlood = false;
-                }
-            }
-
-            if (bloodHunter && target.life <= 0)
-            {
-                xp++;
-            }
-        }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            if (proj.DamageType == DamageClass.Ranged && canGetBlood && isItRanger)
-            {
-                if (target.type != NPCID.TargetDummy)
-                {
-                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X, target.Center.Y), new Vector2(0, -2), ModContent.ItemType<LifeEssence>(), 1);
-                }
-            }
-        }
-        public override void OnConsumeMana(Item item, int manaConsumed)
-        {
-            if (!isItRanger)
-            {
-                if (bloodCurrent >= manaConsumed / 2)
-                {
-                    bloodCurrent -= manaConsumed / 2;
-                    Player.statMana += manaConsumed;
-                }
-            }
-        }
         public override void Initialize()
         {
-            bloodMax = isItRanger ? rangerBloodMax : magicBloodMax;
-            transformingAI = 0;
+            ResetVariables();
         }
         public override void UpdateDead()
         {
@@ -113,26 +62,15 @@ namespace BloodHunter.Common.Players
             Player.eyeColor = new Color(255, 0, 0);
 
             UpdateBuffs();
-            RegenerateBlood();
             LevelSystem();
             UpdateStats();
-            UpdateBlessed();
             InitialTransforming();
         }
         private void ResetVariables()
         {
-            bloodMax2 = isItRanger ? rangerBloodMax : magicBloodMax;
+            bloodMax2 = SpecBloodMax2();
 
             getBloodRate = 600;
-            blessedhunter = false;
-            DemonicMode = false;
-        }
-        private void UpdateBlessed()
-        {
-            if (bloodMax2 <= 5)
-            {
-                blessedhunter = true;
-            }
         }
         private void UpdateStats()
         {
@@ -164,27 +102,16 @@ namespace BloodHunter.Common.Players
         }
         private void UpdateBuffs()
         {
-            if (bloodHunter)
+            if (isBloodHunter)
             {
-                if (isItRanger)
+
+                getBloodCurrent++;
+
+                if (getBloodCurrent >= getBloodRate)
                 {
-                    getBloodCurrent++;
-
-                    if (getBloodCurrent >= getBloodRate)
-                    {
-                        getBloodCurrent = 0;
-                        canGetBlood = true;
-                    }
-
-                    if (bloodCurrent >= bloodMax2)
-                    {
-                        Player.AddBuff(ModContent.BuffType<Malediction>(), getBloodRate * 2);
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Player.position + new Vector2(0, -30), Vector2.Zero, ModContent.ProjectileType<Content.Projectiles.Malediction>(), bloodMax2 / 10, 0);
-                        bloodCurrent = 0;
-                        DemonicMode = true;
-                    }
+                    getBloodCurrent = 0;
+                    canGetBlood = true;
                 }
-
 
                 Player.AddBuff(ModContent.BuffType<BloodPlague>(), 2);
                 bool ZoneSunHeight = Player.ZoneOverworldHeight || Player.ZoneSkyHeight;
@@ -209,29 +136,18 @@ namespace BloodHunter.Common.Players
                 }
             }
         }
-        private void RegenerateBlood()
+
+        private int SpecBloodMax2()
         {
-            if (!isItRanger)
+            return specialization switch
             {
-                if (bloodCurrent <= 0)
-                {
-                    bloodCurrent = 0;
-                }
-
-                getBloodCurrent++;
-
-                if (bloodCurrent < bloodMax2)
-                {
-                    if (getBloodCurrent >= getBloodRate / 5)
-                    {
-                        bloodCurrent += 1;
-
-                        getBloodCurrent = 0;
-                    }
-                }
-            }
+                Specialization.SanguineMarksman => 80,
+                Specialization.DarkbloodMagus => 150,
+                _ => 100,
+            };
         }
-        public void ReceiveBlood(Player player,int amount)
+
+        public void ReceiveBlood(Player player, int amount)
         {
             bloodCurrent += amount;
             CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), new Color(200, 0, 255), amount, true);
@@ -268,46 +184,44 @@ namespace BloodHunter.Common.Players
         {
             ModPacket packet = Mod.GetPacket();
             packet.Write((byte)Player.whoAmI);
-            packet.Write(bloodHunter);
-            packet.Write(isItRanger);
+            packet.Write(isBloodHunter);
             packet.Write(xp);
             packet.Write(xpMax);
+            packet.Write(specialization);
             packet.Send(toWho, fromWho);
         }
         public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */
         {
             BloodHunter clone = clientClone as BloodHunter;
-            clone.bloodHunter = bloodHunter;
+            clone.isBloodHunter = isBloodHunter;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             BloodHunter clone = clientPlayer as BloodHunter;
 
-            if (bloodHunter != clone.bloodHunter)
+            if (isBloodHunter != clone.isBloodHunter)
                 SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
         }
 
         public override void SaveData(TagCompound tag)
         {
-            tag["bloodHunter"] = bloodHunter;
-            tag["bloodGoblet"] = bloodGoblet;
+            tag["bloodHunter"] = isBloodHunter;
             tag["eyeColor"] = eyeColor;
-            tag["isItRanger"] = isItRanger;
             tag["xp"] = xp;
             tag["xpMax"] = xpMax;
             tag["level"] = level;
+            tag["specialization"] = specialization;
         }
 
         public override void LoadData(TagCompound tag)
         {
-            bloodHunter = tag.GetBool("bloodHunter");
+            isBloodHunter = tag.GetBool("bloodHunter");
             eyeColor = tag.Get<Color>("eyeColor");
-            bloodGoblet = tag.GetAsInt("bloodGoblet");
-            isItRanger = tag.GetBool("isItRanger");
             xp = tag.GetInt("xp");
             xpMax = tag.GetInt("xpMax");
             level = tag.GetInt("level");
+            specialization = tag.GetShort("specialization");
         }
         #endregion
     }

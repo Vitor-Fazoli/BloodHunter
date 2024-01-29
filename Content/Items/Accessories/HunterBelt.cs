@@ -1,4 +1,6 @@
-﻿using Terraria.ID;
+﻿using BloodHunter.Content.Items.Materials;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Items.Accessories
@@ -12,6 +14,28 @@ namespace BloodHunter.Content.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
             Item.maxStack = 1;
+        }
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            var bloodHunter = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
+
+            return bloodHunter.blessedhunter && bloodHunter.isItRanger;
+        }
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            var bloodHunter = player.GetModPlayer<Common.Players.BloodHunter>();
+
+            bloodHunter.essence += 1;
+            bloodHunter.bloodMax2 -= 5;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient<BlessedOil>(3)
+            .AddIngredient(ItemID.Leather, 5)
+            .AddIngredient(ItemID.WoodenArrow, 100)
+            .AddTile(TileID.WorkBenches)
+            .Register();
         }
     }
 }

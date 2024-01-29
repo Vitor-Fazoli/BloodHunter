@@ -1,8 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 
 namespace BloodHunter.Content.Items.Accessories
 {
@@ -38,7 +37,7 @@ namespace BloodHunter.Content.Items.Accessories
         }
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            return Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>().bloodHunter;
+            return Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>().isBloodHunter;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace BloodHunter.Content.Items.Accessories
         {
             var p = player.GetModPlayer<Common.Players.BloodHunter>();
 
-            if (p.bloodHunter)
+            if (p.isBloodHunter)
             {
                 if (p.bloodCurrent >= p.bloodMax2)
                 {
@@ -44,7 +44,7 @@ namespace BloodHunter.Content.Items.Accessories
         }
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            return player.GetModPlayer<Common.Players.BloodHunter>().bloodHunter;
+            return player.GetModPlayer<Common.Players.BloodHunter>().isBloodHunter;
         }
     }
 }

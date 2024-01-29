@@ -41,7 +41,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         public override void Draw(SpriteBatch spriteBatch)
         {
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
-            if (!player.bloodHunter || !Main.playerInventory)
+            if (!player.isBloodHunter || !Main.playerInventory)
                 return;
 
             base.Draw(spriteBatch);
@@ -105,7 +105,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
                 {
                     icon.SetImage(magicIcon);
                     player.isItRanger = false;
-                    player.ResetEffects();  
+                    player.ResetEffects();
                 }
                 else
                 {

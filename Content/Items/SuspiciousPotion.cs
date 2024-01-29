@@ -26,7 +26,7 @@ namespace BloodHunter.Content.Items
 
             player.AddBuff(ModContent.BuffType<BloodPlague>(), 1);
             p.eyeColor = player.eyeColor;
-            p.bloodHunter = true;
+            p.isBloodHunter = true;
         }
     }
 }

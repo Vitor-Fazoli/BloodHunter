@@ -34,7 +34,7 @@ namespace BloodHunter.Common.UI.QuickBloodUI
         public override void Draw(SpriteBatch spriteBatch)
         {
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
-            if (!player.bloodHunter)
+            if (!player.isBloodHunter)
                 return;
 
             base.Draw(spriteBatch);

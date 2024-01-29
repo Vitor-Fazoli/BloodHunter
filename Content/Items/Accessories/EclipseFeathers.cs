@@ -45,7 +45,7 @@ namespace BloodHunter.Content.Items.Accessories
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            return player.GetModPlayer<Common.Players.BloodHunter>().bloodHunter;
+            return player.GetModPlayer<Common.Players.BloodHunter>().isBloodHunter;
         }
 
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
