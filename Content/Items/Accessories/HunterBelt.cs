@@ -1,4 +1,5 @@
-﻿using BloodHunter.Content.Items.Materials;
+﻿using BloodHunter.Common.Players;
+using BloodHunter.Content.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,13 +20,14 @@ namespace BloodHunter.Content.Items.Accessories
         {
             var bloodHunter = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
 
-            return bloodHunter.blessedhunter && bloodHunter.isItRanger;
+            return bloodHunter.specialization == Specialization.SanguineMarksman;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var bloodHunter = player.GetModPlayer<Common.Players.BloodHunter>();
+            var sanguineMarksman = player.GetModPlayer<Common.Players.SanguineMarksman>();
 
-            bloodHunter.essence += 1;
+            sanguineMarksman.essence += 1;
             bloodHunter.bloodMax2 -= 5;
         }
         public override void AddRecipes()
