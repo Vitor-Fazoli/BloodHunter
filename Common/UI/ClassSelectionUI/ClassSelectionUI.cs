@@ -11,30 +11,43 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
     class ClassSelectionUIState : UIState
     {
         private const float Precent = 0f;
-        private UIImage icon;
-        private UIText text;
+        private UIImage icon1;
+        private UIImage icon2;
+        private UIText text1;
+        private UIText text2;
         private ReLogic.Content.Asset<Texture2D> rangerIcon;
         private ReLogic.Content.Asset<Texture2D> magicIcon;
 
         public override void OnInitialize()
         {
-            rangerIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/RangerIcon");
-            magicIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/MagicIcon");
+            rangerIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/RangerSimbol");
+            magicIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/MagicSimbol");
 
-            icon = new UIImage(rangerIcon);
-            icon.Left.Set(Main.screenWidth / 2.7f, Precent);
-            icon.Top.Set(140, Precent);
-            icon.Width.Set(30, Precent);
-            icon.Height.Set(30, Precent);
+            icon1 = new UIImage(rangerIcon);
+            icon1.Left.Set(Main.screenWidth / 2.7f, Precent);
+            icon1.Top.Set(140, Precent);
+            icon1.Width.Set(30, Precent);
+            icon1.Height.Set(30, Precent);
 
-            text = new UIText("");
-            text.Width.Set(50, Precent);
-            text.Height.Set(42, Precent);
-            text.Left.Set(0, Precent);
-            text.Top.Set(6, Precent);
+            icon2 = new UIImage(magicIcon);
+            icon2.Left.Set(Main.screenWidth / 2, Precent);
+            icon2.Top.Set(140, Precent);
+            icon2.Width.Set(30, Precent);
 
-            Append(icon);
-            icon.Append(text);
+            text1 = new UIText("");
+            text1.Width.Set(50, Precent);
+            text1.Height.Set(42, Precent);
+            text1.Left.Set(0, Precent);
+            text1.Top.Set(6, Precent);
+
+            text2 = new UIText("");
+            text2.Width.Set(50, Precent);
+            text2.Height.Set(42, Precent);
+            text2.Left.Set(0, Precent);
+            text2.Top.Set(6, Precent);
+
+            Append(icon1);
+            icon1.Append(text1);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -46,7 +59,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         }
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            Rectangle hitbox = icon.GetInnerDimensions().ToRectangle();
+            Rectangle hitbox = icon1.GetInnerDimensions().ToRectangle();
             hitbox.X += 12;
             hitbox.Width -= 24;
             hitbox.Y += 30;
@@ -60,18 +73,18 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
 
             if (player.specialization == Specialization.SanguineMarksman)
             {
-                icon.SetImage(rangerIcon);
+                icon1.SetImage(rangerIcon);
             }
             else
             {
-                icon.SetImage(magicIcon);
+                icon1.SetImage(magicIcon);
             }
 
-            icon.Color = Color.White;
+            icon1.Color = Color.White;
             text.SetText("");
             
 
-            if (icon.IsMouseHovering)
+            if (icon1.IsMouseHovering)
             {
                
             }

@@ -1,4 +1,6 @@
 ﻿using BloodHunter.Content.Buffs;
+using BloodHunter.Content.Items;
+using BloodHunter.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
