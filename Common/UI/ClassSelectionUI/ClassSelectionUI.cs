@@ -11,6 +11,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
     class ClassSelectionUIState : UIState
     {
         private const float Precent = 0f;
+        private UIState place;
         private UIImage icon1;
         private UIImage icon2;
         private UIText text1;
@@ -24,15 +25,16 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
             magicIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/MagicSimbol");
 
             icon1 = new UIImage(rangerIcon);
-            icon1.Left.Set(Main.screenWidth / 2.7f, Precent);
-            icon1.Top.Set(140, Precent);
+            icon1.Left.Set(-150, Precent);
+            icon1.Top.Set(0, Precent);
             icon1.Width.Set(30, Precent);
             icon1.Height.Set(30, Precent);
 
             icon2 = new UIImage(magicIcon);
-            icon2.Left.Set(Main.screenWidth / 2, Precent);
-            icon2.Top.Set(140, Precent);
+            icon2.Left.Set(150, Precent);
+            icon2.Top.Set(0, Precent);
             icon2.Width.Set(30, Precent);
+            icon2.Height.Set(30, Precent);
 
             text1 = new UIText("");
             text1.Width.Set(50, Precent);
@@ -46,13 +48,19 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
             text2.Left.Set(0, Precent);
             text2.Top.Set(6, Precent);
 
-            Append(icon1);
-            icon1.Append(text1);
+            place = new UIState();
+            place.Left.Set(Main.screenWidth / 2, Precent);
+            place.Top.Set(Main.screenHeight / 2, Precent);
+
+
+            place.Append(icon1);
+            place.Append(icon2);
+            Append(place);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
-            if (!player.isBloodHunter || !Main.playerInventory)
+            if (!player.initialSelection)
                 return;
 
             base.Draw(spriteBatch);
@@ -67,9 +75,13 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
         }
         public override void Update(GameTime gameTime)
         {
-
-
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
+
+            while (player.initialSelection)
+            {
+                Main.LocalPlayer.creativeGodMode = true;
+                Main.LocalPlayer.stoned = true;
+            }
 
             if (player.specialization == Specialization.SanguineMarksman)
             {
@@ -86,7 +98,12 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
 
             if (icon1.IsMouseHovering)
             {
-               
+                icon1.Color = Color.Cornsilk;
+            }
+
+            if (icon2.IsMouseHovering)
+            {
+                icon2.Color = Color.Cornsilk;   
             }
 
             base.Update(gameTime);

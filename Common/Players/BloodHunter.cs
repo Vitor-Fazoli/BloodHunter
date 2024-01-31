@@ -20,6 +20,8 @@ namespace BloodHunter.Common.Players
     }
     public class BloodHunter : ModPlayer
     {
+        public bool initialSelection = false;
+
         public bool sunResistance;
 
         public Color eyeColor;
@@ -86,37 +88,42 @@ namespace BloodHunter.Common.Players
         {
             if (transforming)
             {
-                transformingAI++;
+                initialSelection = true;
 
-
-                for (int i = 0; i < 35; i++)
+                if (initialSelection == false)
                 {
-                    Dust d1 = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(5, 20), DustID.Blood, new Vector2(8,-3), Scale: 1);
-                    Dust d2 = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(-5, 20), DustID.Blood, new Vector2(-8,-3), Scale: 1);
-                    d1.noGravity = true;
-                    d2.noGravity = true;
-                }
-                Main.NewText("You feel your blood pulsing through your veins", Color.Red);
+                    transformingAI++;
 
 
-                if (transformingAI > 150 && transformingAI < 225)
-                {
-                    Player.gravity = -0.07f;
-                    Player.velocity.X = 0;
-                }
-                else if (transformingAI >= 225)
-                {
-                    for (int i = 0; i < 200; i++)
+                    for (int i = 0; i < 35; i++)
                     {
-                        Vector2 speed = Main.rand.NextVector2CircularEdge(2f, 2f);
-                        Dust d = Dust.NewDustPerfect(Main.LocalPlayer.Center, DustID.Blood, speed * 5, Scale: 1.5f);
-                        d.noGravity = true;
+                        Dust d1 = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(5, 20), DustID.Blood, new Vector2(8, -3), Scale: 1);
+                        Dust d2 = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(-5, 20), DustID.Blood, new Vector2(-8, -3), Scale: 1);
+                        d1.noGravity = true;
+                        d2.noGravity = true;
                     }
-                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X, Player.Center.Y), new Vector2(0, -2), ModContent.ItemType<EclipseFeathers>(), 1);
-                    Main.NewText("You became a Blood Hunter", Color.Red);
-                    transforming = false;
-                    transformingAI = 0;
-                    Player.gravity = Player.defaultGravity;
+                    Main.NewText("You feel your blood pulsing through your veins", Color.Red);
+
+
+                    if (transformingAI > 150 && transformingAI < 225)
+                    {
+                        Player.gravity = -0.07f;
+                        Player.velocity.X = 0;
+                    }
+                    else if (transformingAI >= 225)
+                    {
+                        for (int i = 0; i < 200; i++)
+                        {
+                            Vector2 speed = Main.rand.NextVector2CircularEdge(2f, 2f);
+                            Dust d = Dust.NewDustPerfect(Main.LocalPlayer.Center, DustID.Blood, speed * 5, Scale: 1.5f);
+                            d.noGravity = true;
+                        }
+                        Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X, Player.Center.Y), new Vector2(0, -2), ModContent.ItemType<EclipseFeathers>(), 1);
+                        Main.NewText("You became a Blood Hunter", Color.Red);
+                        transforming = false;
+                        transformingAI = 0;
+                        Player.gravity = Player.defaultGravity;
+                    }
                 }
             }
         }
