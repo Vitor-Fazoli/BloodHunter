@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -88,11 +89,22 @@ namespace BloodHunter.Common.Players
                 transformingAI++;
 
 
-                Player.gravity = -0.07f;
-                Player.velocity.X = 0;
+                for (int i = 0; i < 35; i++)
+                {
+                    Dust d1 = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(5, 20), DustID.Blood, new Vector2(8,-3), Scale: 1);
+                    Dust d2 = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(-5, 20), DustID.Blood, new Vector2(-8,-3), Scale: 1);
+                    d1.noGravity = true;
+                    d2.noGravity = true;
+                }
+                Main.NewText("You feel your blood pulsing through your veins", Color.Red);
 
 
-                if (transformingAI >= 50)
+                if (transformingAI > 150 && transformingAI < 225)
+                {
+                    Player.gravity = -0.07f;
+                    Player.velocity.X = 0;
+                }
+                else if (transformingAI >= 225)
                 {
                     for (int i = 0; i < 200; i++)
                     {
@@ -100,7 +112,10 @@ namespace BloodHunter.Common.Players
                         Dust d = Dust.NewDustPerfect(Main.LocalPlayer.Center, DustID.Blood, speed * 5, Scale: 1.5f);
                         d.noGravity = true;
                     }
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X, Player.Center.Y), new Vector2(0, -2), ModContent.ItemType<EclipseFeathers>(), 1);
+                    Main.NewText("You became a Blood Hunter", Color.Red);
                     transforming = false;
+                    transformingAI = 0;
                     Player.gravity = Player.defaultGravity;
                 }
             }

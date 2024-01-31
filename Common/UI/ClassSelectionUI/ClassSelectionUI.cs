@@ -81,7 +81,7 @@ namespace BloodHunter.Common.UI.ClassSelectionUI
             }
 
             icon1.Color = Color.White;
-            text.SetText("");
+            text1.SetText("");
             
 
             if (icon1.IsMouseHovering)
