@@ -22,7 +22,7 @@ namespace BloodHunter.Content.Items.Accessories
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            return Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>().bloodHunter;
+            return Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>().isBloodHunter;
         }
     }
     public class TwilightShellP : ModPlayer

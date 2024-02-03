@@ -12,7 +12,6 @@ namespace BloodHunter.Common.UI.QuickBloodUI
         private const float Precent = 0f;
         private UIImage point;
         private UIImage frame;
-        //private UIText text;
 
         public override void OnInitialize()
         {
@@ -34,7 +33,7 @@ namespace BloodHunter.Common.UI.QuickBloodUI
         public override void Draw(SpriteBatch spriteBatch)
         {
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
-            if (!player.bloodHunter)
+            if (!player.isBloodHunter)
                 return;
 
             base.Draw(spriteBatch);

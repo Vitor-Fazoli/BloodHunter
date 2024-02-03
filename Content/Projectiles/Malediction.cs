@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Projectiles
@@ -65,10 +60,10 @@ namespace BloodHunter.Content.Projectiles
             if (owner.dead || !owner.active)
             {
                 owner.ClearBuff(ModContent.BuffType<Buffs.Malediction>());
-           
+
                 return false;
             }
-           
+
             if (owner.HasBuff(ModContent.BuffType<Buffs.Malediction>()))
             {
                 Projectile.timeLeft = 2;

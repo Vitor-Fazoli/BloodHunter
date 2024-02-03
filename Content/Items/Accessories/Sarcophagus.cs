@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using BloodHunter.Common.Players;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Items.Accessories
@@ -17,16 +18,16 @@ namespace BloodHunter.Content.Items.Accessories
 
             p.bloodMax2 += 50;
 
-            //Ranger
-            if (p.isItRanger)
+            switch (p.specialization)
             {
-                player.statDefense += p.bloodMax2 / 10;
-            }
-            // Magic
-            else
-            {
-                player.statLifeMax2 -= 20;
-                p.getBloodRate -= 120;
+                case Specialization.SanguineMarksman:
+                    player.statDefense += p.bloodMax2 / 10;
+                    break;
+
+                case Specialization.DarkbloodMagus:
+                    player.statLifeMax2 -= 20;
+                    p.getBloodRate -= 120;
+                    break;
             }
         }
     }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -75,8 +74,9 @@ namespace BloodHunter.Content.Items
         public override bool OnPickup(Player player)
         {
             var p = player.GetModPlayer<Common.Players.BloodHunter>();
+            var sm = player.GetModPlayer<Common.Players.SanguineMarksman>();
 
-            int amount = p.essence;
+            int amount = sm.essence;
 
             p.ReceiveBlood(player, amount);
             Item.active = false;

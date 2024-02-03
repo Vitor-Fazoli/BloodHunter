@@ -1,5 +1,4 @@
 ﻿using BloodHunter.Common.Systems;
-using BloodHunter.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
