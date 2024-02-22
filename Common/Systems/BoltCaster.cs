@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace BloodHunter.Common.Systems
 {
-    public abstract class DartThrower : ModItem
+    public abstract class BoltCaster : ModItem
     {
         public int arrowSpread = 10;
 

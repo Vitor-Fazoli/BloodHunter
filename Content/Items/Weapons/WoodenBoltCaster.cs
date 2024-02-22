@@ -1,13 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BloodHunter.Common.Systems;
+using BloodHunter.Content.Items.Ammo;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BloodHunter.Content.Items.Weapons
 {
-    public class PlatinumDartThrower : ModItem
+    public class WoodenBoltCaster : BoltCaster
     {
-        //todo: Create a abstract class to inherit from for all Dart Throwers
         public override void SetDefaults()
         {
             // Common Properties
@@ -24,18 +26,18 @@ namespace BloodHunter.Content.Items.Weapons
 
             // Weapon Properties
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 8;
-            Item.knockBack = 0.5f;
+            Item.damage = 2;
+            Item.knockBack = 0.1f;
             Item.noMelee = true;
 
-            // Dart Thrower Properties
-            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            // BoltCaster Properties
+            Item.shoot = ModContent.ProjectileType<Projectiles.WoodenBolt>();
+            Item.useAmmo = ModContent.ItemType<WoodenBolt>();
             Item.shootSpeed = 9f;
-            Item.useAmmo = AmmoID.Arrow;
         }
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
 }
