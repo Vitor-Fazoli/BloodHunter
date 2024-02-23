@@ -15,11 +15,12 @@ namespace BloodHunter.Content.Items.Ammo
         {
             Item.width = 5;
             Item.height = 11;
-            Item.damage = 4;
+            Item.damage = 2;
+            Item.crit = 6;
             Item.DamageType = DamageClass.Ranged;
             Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
-            Item.knockBack = 2f;
+            Item.knockBack = 1f;
             Item.value = Item.sellPrice(0, 0, 0, 10);
             Item.rare = ItemRarityID.White;
             Item.shoot = ModContent.ProjectileType < Projectiles.WoodenBolt>();
@@ -28,7 +29,7 @@ namespace BloodHunter.Content.Items.Ammo
 
         public override void AddRecipes()
         {
-            CreateRecipe(999)
+            CreateRecipe()
                 .AddIngredient(ItemID.Wood, 3)
                 .AddTile(TileID.WorkBenches)
                 .Register();

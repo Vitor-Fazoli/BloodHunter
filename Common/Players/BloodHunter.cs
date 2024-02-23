@@ -88,7 +88,9 @@ namespace BloodHunter.Common.Players
         {
             if (transforming)
             {
+                Player.immune = true;
                 initialSelection = true;
+                //Main.NewText("You feel your blood pulsing through your veins", Color.Red);
 
                 if (initialSelection == false)
                 {
@@ -102,8 +104,8 @@ namespace BloodHunter.Common.Players
                         d1.noGravity = true;
                         d2.noGravity = true;
                     }
-                    Main.NewText("You feel your blood pulsing through your veins", Color.Red);
 
+                    
 
                     if (transformingAI > 150 && transformingAI < 225)
                     {
