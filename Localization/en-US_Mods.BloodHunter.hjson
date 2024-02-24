@@ -148,8 +148,13 @@ Items: {
 		Tooltip: ""
 	}
 
-	Hellsing454Casull: {
-		DisplayName: Hellsing .454 Casull
+	WoodenBolt: {
+		DisplayName: Wooden Bolt
+		Tooltip: ""
+	}
+
+	WoodenBoltCaster: {
+		DisplayName: Wooden Bolt Caster
 		Tooltip: ""
 	}
 }
@@ -178,4 +183,5 @@ Keybinds.RandomBuff.DisplayName: Random Buff
 Projectiles: {
 	CursedSword.DisplayName: Cursed Sword
 	Malediction.DisplayName: Malediction
+	WoodenBolt.DisplayName: Wooden Bolt
 }
