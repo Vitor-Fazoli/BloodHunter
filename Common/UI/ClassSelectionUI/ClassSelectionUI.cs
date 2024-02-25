@@ -1,115 +1,75 @@
-﻿using BloodHunter.Common.Players;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace BloodHunter.Common.UI.ClassSelectionUI
 {
-    class ClassSelectionUIState : UIState
+    internal class ClassSelectionUIState : UIState
     {
-        private const float Precent = 0f;
-        private UIState place;
-        private UIImage icon1;
-        private UIImage icon2;
-        private UIText text1;
-        private UIText text2;
-        private ReLogic.Content.Asset<Texture2D> rangerIcon;
-        private ReLogic.Content.Asset<Texture2D> magicIcon;
+
+        public static bool visible;
+        public DragableUIPanel panel;
+        private UIText title;
+        private UIText sanguineMarksman;
+        private UIText darkBloodMagus;
 
         public override void OnInitialize()
         {
-            rangerIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/RangerSimbol");
-            magicIcon = ModContent.Request<Texture2D>("BloodHunter/Assets/MagicSimbol");
+            panel = new DragableUIPanel();
+            panel.Left.Set(800, 0);
+            panel.Top.Set(100, 0);
+            panel.Width.Set(500, 0);
+            panel.Height.Set(400, 0);
 
-            icon1 = new UIImage(rangerIcon);
-            icon1.Left.Set(-150, Precent);
-            icon1.Top.Set(0, Precent);
-            icon1.Width.Set(30, Precent);
-            icon1.Height.Set(30, Precent);
+            title = new UIText("Choose your specialization")
+            {
+                HAlign = 0.5f,
+                VAlign = 0.1f
+            };
+            sanguineMarksman = new UIText("Sanguine Marksman")
+            {
+                HAlign = 0.5f,
+                VAlign = 0.3f
+            };  
+            darkBloodMagus = new UIText("Dark Blood Magus")
+            {
+                HAlign = 0.5f,
+                VAlign = 0.5f
+            };
 
-            icon2 = new UIImage(magicIcon);
-            icon2.Left.Set(150, Precent);
-            icon2.Top.Set(0, Precent);
-            icon2.Width.Set(30, Precent);
-            icon2.Height.Set(30, Precent);
+            // ignore these extra 0s
 
-            text1 = new UIText("");
-            text1.Width.Set(50, Precent);
-            text1.Height.Set(42, Precent);
-            text1.Left.Set(0, Precent);
-            text1.Top.Set(6, Precent);
-
-            text2 = new UIText("");
-            text2.Width.Set(50, Precent);
-            text2.Height.Set(42, Precent);
-            text2.Left.Set(0, Precent);
-            text2.Top.Set(6, Precent);
-
-            place = new UIState();
-            place.Left.Set(Main.screenWidth / 2, Precent);
-            place.Top.Set(Main.screenHeight / 2, Precent);
-
-
-            place.Append(icon1);
-            place.Append(icon2);
-            Append(place);
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
-            if (!player.initialSelection)
-                return;
-
-            base.Draw(spriteBatch);
-        }
-        protected override void DrawSelf(SpriteBatch spriteBatch)
-        {
-            Rectangle hitbox = icon1.GetInnerDimensions().ToRectangle();
-            hitbox.X += 12;
-            hitbox.Width -= 24;
-            hitbox.Y += 30;
-            hitbox.Height -= 40;
+            panel.Append(sanguineMarksman);
+            panel.Append(darkBloodMagus);
+            panel.Append(title); //appends the text to the panel
+            Append(panel); //appends the panel to the UIState
         }
         public override void Update(GameTime gameTime)
         {
-            var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
-
-            while (player.initialSelection)
+            if (sanguineMarksman.IsMouseHovering)
             {
-                Main.LocalPlayer.creativeGodMode = true;
-                Main.LocalPlayer.stoned = true;
-            }
-
-            if (player.specialization == Specialization.SanguineMarksman)
-            {
-                icon1.SetImage(rangerIcon);
+                sanguineMarksman.TextColor = new Color(0, 255, 0);
+                Main.instance.MouseText("On hit foes with ranged weapons spawn a blood orb, it move ahead to player to get a blood\n\n" +
+                    "When you get maximum blood, receive a buff and reset your bar");
             }
             else
             {
-                icon1.SetImage(magicIcon);
+                sanguineMarksman.TextColor = Color.White;
             }
 
-            icon1.Color = Color.White;
-            text1.SetText("");
-            
-
-            if (icon1.IsMouseHovering)
+            if (darkBloodMagus.IsMouseHovering)
             {
-                icon1.Color = Color.Cornsilk;
+                darkBloodMagus.TextColor = new Color(0, 255, 0);
+                Main.instance.MouseText("Automatically gains blood, can be used as excess mana");
             }
-
-            if (icon2.IsMouseHovering)
+            else
             {
-                icon2.Color = Color.Cornsilk;   
+                darkBloodMagus.TextColor = Color.White;
             }
 
-            base.Update(gameTime);
-        }
-        public override void LeftClick(UIMouseEvent evt)
-        {
+
+
 
         }
     }

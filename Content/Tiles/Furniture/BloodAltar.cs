@@ -32,7 +32,7 @@ namespace BloodHunter.Content.Tiles.Furniture
 
             //Aparecer tela para escolher especialização
 
-            p.transforming = true;
+            p.initialSelection = true;
             return true;
         }
     }

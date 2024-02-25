@@ -314,3 +314,4 @@ C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHu
 C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\BloodHunter.pdb
 C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\ref\BloodHunter.dll
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\BloodHun.E460468E.Up2Date
+C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\BloodHunter.sourcelink.json

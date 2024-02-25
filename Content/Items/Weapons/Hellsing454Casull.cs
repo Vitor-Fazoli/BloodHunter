@@ -16,7 +16,7 @@ namespace BloodHunter.Content.Items.Weapons
             Item.width = 52;
             Item.height = 28;
             Item.rare = ItemRarityID.Green;
-            Items.scale = 0.7f;
+            Item.scale = 0.7f;
 
             // Use Properties
             Item.useTime = 30;
@@ -32,7 +32,7 @@ namespace BloodHunter.Content.Items.Weapons
             Item.noMelee = true;
 
             // Gun Properties
-            Item.shoot = 10;
+            Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 9f;
             Item.useAmmo = AmmoID.Bullet;
         }
