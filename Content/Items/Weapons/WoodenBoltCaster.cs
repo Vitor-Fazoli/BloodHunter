@@ -26,18 +26,15 @@ namespace BloodHunter.Content.Items.Weapons
 
             // Weapon Properties
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 2;
+            Item.damage = 3;
             Item.knockBack = 0.1f;
+            Item.crit = 21;
             Item.noMelee = true;
 
             // BoltCaster Properties
             Item.shoot = ModContent.ProjectileType<Projectiles.WoodenBolt>();
             Item.useAmmo = ModContent.ItemType<WoodenBolt>();
-            Item.shootSpeed = 9f;
-        }
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            return base.Shoot(player, source, position, velocity, type, damage, knockback);
+            Item.shootSpeed = 13f;
         }
     }
 }
