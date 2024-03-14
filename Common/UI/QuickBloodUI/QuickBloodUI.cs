@@ -21,11 +21,13 @@ namespace BloodHunter.Common.UI.QuickBloodUI
             point.Width.Set(50, Precent);
             point.Height.Set(42, Precent);
 
-            frame = new UIImage(ModContent.Request<Texture2D>("BloodHunter/Assets/BloodFrame"));
-            frame.Left.Set(Main.screenWidth / 3.3f, Precent);
-            frame.Top.Set(20, Precent);
-            frame.Width.Set(50, Precent);
-            frame.Height.Set(42, Precent);
+            frame = new UIImage(ModContent.Request<Texture2D>("BloodHunter/Assets/BloodFrame"))
+            {
+                HAlign = 0.25f,
+                VAlign = 0.02f
+            };
+            frame.Width.Set(60, Precent);
+            frame.Height.Set(60, Precent);
 
             frame.Append(point);
             Append(frame);
@@ -38,14 +40,6 @@ namespace BloodHunter.Common.UI.QuickBloodUI
 
             base.Draw(spriteBatch);
         }
-        protected override void DrawSelf(SpriteBatch spriteBatch)
-        {
-            Rectangle hitbox = frame.GetInnerDimensions().ToRectangle();
-            hitbox.X += 12;
-            hitbox.Width -= 24;
-            hitbox.Y += 30;
-            hitbox.Height -= 40;
-        }
         public override void Update(GameTime gameTime)
         {
             var player = Main.LocalPlayer.GetModPlayer<Players.BloodHunter>();
@@ -55,13 +49,13 @@ namespace BloodHunter.Common.UI.QuickBloodUI
 
             if (Main.playerInventory)
             {
-                frame.Left.Set(Main.screenWidth / 3.4f, Precent);
-                frame.Top.Set(90, Precent);
+                frame.HAlign = 0.31f;
+                frame.VAlign = 0.09f;
             }
             else
             {
-                frame.Left.Set(Main.screenWidth / 4, Precent);
-                frame.Top.Set(20, Precent);
+                frame.HAlign = 0.25f;
+                frame.VAlign = 0.02f;
             }
 
             //if (player.bloodCurrent <= player.xpMax)

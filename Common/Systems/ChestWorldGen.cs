@@ -29,7 +29,7 @@ namespace BloodHunter.Common.Systems
                     {
                         if (chest.item[inventoryIndex].type == ItemID.None)
                         {
-                            chest.item[inventoryIndex].SetDefaults(ModContent.ItemType<SuspiciousPotion>());
+                            chest.item[inventoryIndex].SetDefaults(ModContent.ItemType<VampiricPotion>());
                             return;
                         }
                     }

@@ -2,6 +2,7 @@
 using BloodHunter.Content.Items;
 using log4net.Core;
 using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -36,6 +37,10 @@ namespace BloodHunter.Common.Players
                 if (v.bloodCurrent >= v.bloodMax2)
                 {
                     Player.AddBuff(ModContent.BuffType<Malediction>(), 300 + (v.GET_BLOOD_RATE_MAX - v.getBloodRate));
+                    if(Main.projectile.Any(p => p.active && p.type == ModContent.ProjectileType<Content.Projectiles.Malediction>()))
+                    {
+                        return;
+                    }
                     Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Player.position + new Vector2(0, -30), Vector2.Zero, ModContent.ProjectileType<Content.Projectiles.Malediction>(), v.bloodMax2 / 10, 0);
                     v.bloodCurrent = 0;
                 }
