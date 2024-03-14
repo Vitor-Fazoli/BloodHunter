@@ -30,9 +30,14 @@ namespace BloodHunter.Content.Tiles.Furniture
         {
             var p = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
 
-            //Aparecer tela para escolher especialização
+            switch (Main.waterStyle)
+            {
+                case WaterStyleID.Desert:
+                    break;
+                case WaterStyleID.Snow:
+                    break;
+            }
 
-            p.initialSelection = true;
             return true;
         }
     }

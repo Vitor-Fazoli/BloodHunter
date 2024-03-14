@@ -143,6 +143,16 @@ Items: {
 		DisplayName: Hellsing454 Casull
 		Tooltip: ""
 	}
+
+	WoodenCross: {
+		DisplayName: Wooden Cross
+		Tooltip: ""
+	}
+
+	VampiricPotion: {
+		DisplayName: Vampiric Potion
+		Tooltip: ""
+	}
 }
 
 Prefixes: {

@@ -31,7 +31,7 @@ namespace BloodHunter.Common.Players
         public int bloodMax2;
 
         public int getBloodCurrent;
-        public int getBloodRate = 600;
+        public int getBloodRate = 10;
         public readonly int GET_BLOOD_RATE_MAX = 600;
         public bool canGetBlood = true;
 
@@ -78,7 +78,7 @@ namespace BloodHunter.Common.Players
         {
             bloodMax2 = SpecBloodMax2();
 
-            getBloodRate = 600;
+            getBloodRate = 10;
         }
         private void UpdateStats()
         {

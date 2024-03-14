@@ -51,10 +51,11 @@ namespace BloodHunter.Content.Projectiles
                 return;
             }
 
+            DamageAndAreaScale();
             Movement();
             Visuals();
         }
-
+       
         private bool CheckActive(Player owner)
         {
             if (owner.dead || !owner.active)
@@ -71,7 +72,13 @@ namespace BloodHunter.Content.Projectiles
 
             return true;
         }
-
+        private void DamageAndAreaScale()
+        {
+            var v = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
+            Projectile.damage = (int)(v.bloodMax2 / 16);
+            Projectile.width = 100 + (int)(v.bloodMax2 / 2);
+            Projectile.height = 100 + (int)(v.bloodMax2 / 2);
+        }
         private void Movement()
         {
             Projectile.Center = Main.player[Projectile.owner].Center;
