@@ -9,9 +9,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace BloodHunter.Common.Players
+namespace BloodHunter.Common.Players.Specs
 {
-    public class SanguineMarksman : ModPlayer
+    public class MidnightRanger : ModPlayer
     {
         public int essence;
         private const int _essence = 5;
@@ -32,12 +32,12 @@ namespace BloodHunter.Common.Players
         public override void PostUpdateMiscEffects()
         {
             var v = Player.GetModPlayer<BloodHunter>();
-            if (IsSanguineMarksman())
+            if (IsMidnightRanger())
             {
                 if (v.bloodCurrent >= v.bloodMax2)
                 {
                     Player.AddBuff(ModContent.BuffType<Malediction>(), 300 + (v.GET_BLOOD_RATE_MAX - v.getBloodRate));
-                    if(Main.projectile.Any(p => p.active && p.type == ModContent.ProjectileType<Content.Projectiles.Malediction>()))
+                    if (Main.projectile.Any(p => p.active && p.type == ModContent.ProjectileType<Content.Projectiles.Malediction>()))
                     {
                         return;
                     }
@@ -55,7 +55,7 @@ namespace BloodHunter.Common.Players
         {
             var v = Player.GetModPlayer<BloodHunter>();
 
-            if (IsSanguineMarksman())
+            if (IsMidnightRanger())
             {
                 if (v.canGetBlood)
                 {
@@ -73,7 +73,7 @@ namespace BloodHunter.Common.Players
         {
             var v = Player.GetModPlayer<BloodHunter>();
 
-            if (IsSanguineMarksman())
+            if (IsMidnightRanger())
             {
                 if (v.canGetBlood)
                 {
@@ -87,11 +87,6 @@ namespace BloodHunter.Common.Players
                 }
             }
         }
-        private bool IsSanguineMarksman()
-        {
-            var v = Player.GetModPlayer<BloodHunter>();
-
-            return v.isBloodHunter is true && v.specialization == Specialization.SanguineMarksman;
-        }
+        private bool IsMidnightRanger() => Player.GetModPlayer<BloodHunter>().isBloodHunter && Player.GetModPlayer<BloodHunter>().specialization == Specialization.MidnightRanger;
     }
 }

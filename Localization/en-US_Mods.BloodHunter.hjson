@@ -28,6 +28,11 @@ Buffs: {
 		DisplayName: Malediction
 		Description: Mods.BloodHunter.Buffs.Malediction.Description
 	}
+
+	Hemorrhage: {
+		DisplayName: Hemorrhage
+		Description: Mods.BloodHunter.Buffs.Hemorrhage.Description
+	}
 }
 
 Items: {
@@ -180,4 +185,5 @@ Projectiles: {
 	CursedSword.DisplayName: Cursed Sword
 	Malediction.DisplayName: Malediction
 	WoodenBolt.DisplayName: Wooden Bolt
+	BloodStake.DisplayName: Blood Stake
 }

@@ -6,7 +6,6 @@ C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\Blood
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\bin\Debug\net6.0\FNA.dll
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\bin\Debug\net6.0\Hjson.dll
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\bin\Debug\net6.0\Humanizer.dll
-C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\bin\Debug\net6.0\Ionic.Zip.Reduced.dll
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\bin\Debug\net6.0\log4net.dll
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\bin\Debug\net6.0\Microsoft.Build.Locator.dll
@@ -270,3 +269,4 @@ C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHu
 C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\BloodHun.E460468E.Up2Date
 C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\BloodHunter.sourcelink.json
 C:\Users\vhfaz_tnsgsci\Documents\My Games\Terraria\tModLoader\ModSources\BloodHunter\obj\Debug\net6.0\BloodHun.E460468E.Up2Date
+C:\Users\vhfaz\OneDrive\Documentos\My Games\Terraria\tModLoader\ModSources\BloodHunter\bin\Debug\net6.0\DotNetZip.dll

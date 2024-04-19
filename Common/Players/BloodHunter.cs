@@ -1,31 +1,45 @@
 ﻿using BloodHunter.Content.Buffs;
-using BloodHunter.Content.Items;
-using BloodHunter.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace BloodHunter.Common.Players
 {
-
+    /// <summary>
+    /// this is a struct to store all specializations of blood hunter
+    /// </summary>
     public struct Specialization
     {
-        public const short SanguineMarksman = 01;
-        public const short DarkbloodMagus = 02;
+        public const short MidnightRanger = 01;
+        public const short TwilightMage = 02;
+        public const short MoonReaver = 03;
     }
+
+    /// <summary>
+    /// this is a common class of blood hunter to store all the blood hunter data and methods to use in Specializations
+    /// </summary>
     public class BloodHunter : ModPlayer
     {
-        public bool initialSelection = false;
-
+        /// <summary>
+        /// is a bool to check if the player already have sun resistance
+        /// </summary>
         public bool sunResistance;
 
+        /// <summary>
+        /// change the eye color of the player when the player is a blood hunter
+        /// </summary>
         public Color eyeColor;
+
+        /// <summary>
+        /// return true if the player is a blood hunter
+        /// </summary>
         public bool isBloodHunter;
+
+        /// System to store the blood of the player ( like a mana )
         public int bloodCurrent;
         public int bloodMax;
         public int bloodMax2;
@@ -35,36 +49,62 @@ namespace BloodHunter.Common.Players
         public readonly int GET_BLOOD_RATE_MAX = 600;
         public bool canGetBlood = true;
 
+        /// Level System of blood hunter
         public const int LEVEL_MAX = 10;
         public int level;
         public int countToXp;
         public int xp;
         public int xpMax;
 
-        public short specialization = Specialization.SanguineMarksman;
+        /// <summary>
+        /// Specialization of blood hunter
+        /// </summary>
+        public short specialization = Specialization.MoonReaver;
 
-        public bool transforming;
-        private int transformingAI;
+        public void ZeroBlood()
+        {
+            bloodCurrent = 0;
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>true if the amount of blood is in maximum</returns>
         public bool IsBloodFull()
         {
             return bloodCurrent == bloodMax2;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Initialize()
         {
             ResetVariables();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public override void UpdateDead()
         {
             ResetVariables();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public override void ResetEffects()
         {
             ResetVariables();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public override void PostUpdateMiscEffects()
         {
-            specialization = Specialization.SanguineMarksman;
+            specialization = Specialization.MoonReaver;
 
             bloodCurrent = Utils.Clamp(bloodCurrent, 0, bloodMax2);
             Player.eyeColor = new Color(255, 0, 0);
@@ -72,63 +112,30 @@ namespace BloodHunter.Common.Players
             UpdateBuffs();
             LevelSystem();
             UpdateStats();
-            InitialTransforming();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void ResetVariables()
         {
-            bloodMax2 = SpecBloodMax2();
+            bloodMax2 = GetSpecBloodMax();
 
-            getBloodRate = 10;
+            getBloodRate = GetSpecBloodRate();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void UpdateStats()
         {
             Player.GetDamage(DamageClass.Generic) += level * 0.01f;
         }
-        private void InitialTransforming()
-        {
-            if (transforming)
-            {
-                Player.immune = true;
-                initialSelection = true;
-                //Main.NewText("You feel your blood pulsing through your veins", Color.Red);
+        
 
-                if (initialSelection == false)
-                {
-                    transformingAI++;
-
-
-                    for (int i = 0; i < 35; i++)
-                    {
-                        Dust d1 = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(5, 20), DustID.Blood, new Vector2(8, -3), Scale: 1);
-                        Dust d2 = Dust.NewDustPerfect(Main.LocalPlayer.Center + new Vector2(-5, 20), DustID.Blood, new Vector2(-8, -3), Scale: 1);
-                        d1.noGravity = true;
-                        d2.noGravity = true;
-                    }
-
-                    
-
-                    if (transformingAI > 150 && transformingAI < 225)
-                    {
-                        Player.gravity = -0.07f;
-                        Player.velocity.X = 0;
-                    }
-                    else if (transformingAI >= 225)
-                    {
-                        for (int i = 0; i < 200; i++)
-                        {
-                            Vector2 speed = Main.rand.NextVector2CircularEdge(2f, 2f);
-                            Dust d = Dust.NewDustPerfect(Main.LocalPlayer.Center, DustID.Blood, speed * 5, Scale: 1.5f);
-                            d.noGravity = true;
-                        }
-                        Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X, Player.Center.Y), new Vector2(0, -2), ModContent.ItemType<EclipseFeathers>(), 1);
-                        Main.NewText("You became a Blood Hunter", Color.Red);
-                        transforming = false;
-                        transformingAI = 0;
-                        Player.gravity = Player.defaultGravity;
-                    }
-                }
-            }
-        }
+        /// <summary>
+        /// 
+        /// </summary>
         private void UpdateBuffs()
         {
             if (isBloodHunter)
@@ -166,26 +173,64 @@ namespace BloodHunter.Common.Players
             }
         }
 
-        private int SpecBloodMax2()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private int GetSpecBloodMax()
         {
             return specialization switch
             {
-                Specialization.SanguineMarksman => 80,
-                Specialization.DarkbloodMagus => 150,
+                Specialization.MidnightRanger => 80,
+                Specialization.TwilightMage => 150,
+                Specialization.MoonReaver => 200,
                 _ => 100,
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private int GetSpecBloodRate()
+        {
+            return specialization switch
+            {
+                Specialization.MidnightRanger => 600,
+                Specialization.TwilightMage => 150,
+                Specialization.MoonReaver => 120,
+                _ => 100,
+            };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="amount"></param>
         public void ReceiveBlood(Player player, int amount)
         {
             bloodCurrent += amount;
             CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), new Color(200, 0, 255), amount, true);
             SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, player.position);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="levelRate"></param>
+        /// <returns></returns>
         private static int ToLevelUp(int level, float levelRate)
         {
             return (int)(50 * Math.Pow(levelRate, level - 1));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
         private static int LevelUp(int level)
         {
             if (level < LEVEL_MAX)
@@ -197,6 +242,10 @@ namespace BloodHunter.Common.Players
                 return level;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void LevelSystem()
         {
             xpMax = ToLevelUp(level, 1.5f);
@@ -208,7 +257,12 @@ namespace BloodHunter.Common.Players
             }
         }
 
-        #region data saving
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="toWho"></param>
+        /// <param name="fromWho"></param>
+        /// <param name="newPlayer"></param>
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             ModPacket packet = Mod.GetPacket();
@@ -219,12 +273,21 @@ namespace BloodHunter.Common.Players
             packet.Write(specialization);
             packet.Send(toWho, fromWho);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientClone"></param>
         public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */
         {
             BloodHunter clone = clientClone as BloodHunter;
             clone.isBloodHunter = isBloodHunter;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientPlayer"></param>
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             BloodHunter clone = clientPlayer as BloodHunter;
@@ -233,6 +296,11 @@ namespace BloodHunter.Common.Players
                 SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
         public override void SaveData(TagCompound tag)
         {
             tag["bloodHunter"] = isBloodHunter;
@@ -243,6 +311,11 @@ namespace BloodHunter.Common.Players
             tag["specialization"] = specialization;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
         public override void LoadData(TagCompound tag)
         {
             isBloodHunter = tag.GetBool("bloodHunter");
@@ -252,6 +325,5 @@ namespace BloodHunter.Common.Players
             level = tag.GetInt("level");
             specialization = tag.GetShort("specialization");
         }
-        #endregion
     }
 }

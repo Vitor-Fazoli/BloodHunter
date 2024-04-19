@@ -20,12 +20,12 @@ namespace BloodHunter.Content.Items.Accessories
         {
             var bloodHunter = Main.LocalPlayer.GetModPlayer<Common.Players.BloodHunter>();
 
-            return bloodHunter.specialization == Specialization.SanguineMarksman;
+            return bloodHunter.specialization == Specialization.MidnightRanger;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var bloodHunter = player.GetModPlayer<Common.Players.BloodHunter>();
-            var sanguineMarksman = player.GetModPlayer<Common.Players.SanguineMarksman>();
+            var sanguineMarksman = player.GetModPlayer<Common.Players.Specs.MidnightRanger>();
 
             sanguineMarksman.essence += 1;
             bloodHunter.bloodMax2 -= 5;

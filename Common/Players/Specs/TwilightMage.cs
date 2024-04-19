@@ -3,29 +3,29 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace BloodHunter.Common.Players
+namespace BloodHunter.Common.Players.Specs
 {
-    public class DarkBloodMagus : ModPlayer
+    public class TwilightMage : ModPlayer
     {
-        public int darkBloodBonus;
-        public int _darkBloodBonus = 0;
+        public int twilightMageBonus;
+        public int _twilightMageBonus = 0;
 
         public override void Initialize()
         {
-            darkBloodBonus = _darkBloodBonus;
+            twilightMageBonus = _twilightMageBonus;
         }
         public override void ResetEffects()
         {
-            darkBloodBonus = _darkBloodBonus;
+            twilightMageBonus = _twilightMageBonus;
         }
         public override void PostUpdateMiscEffects()
         {
             var v = Player.GetModPlayer<BloodHunter>();
-            if (IsDarkBloodMagus())
+            if (IsTwilightMage())
             {
                 if (v.canGetBlood)
                 {
-                    v.bloodCurrent += (1 + darkBloodBonus);
+                    v.bloodCurrent += 1 + twilightMageBonus;
 
                     v.canGetBlood = false;
                 }
@@ -35,7 +35,7 @@ namespace BloodHunter.Common.Players
         {
             var v = Player.GetModPlayer<BloodHunter>();
 
-            if (IsDarkBloodMagus())
+            if (IsTwilightMage())
             {
                 if (v.bloodCurrent >= manaConsumed / 2)
                 {
@@ -45,12 +45,7 @@ namespace BloodHunter.Common.Players
             }
         }
 
-        private bool IsDarkBloodMagus()
-        {
-            var v = Player.GetModPlayer<BloodHunter>();
-
-            return v.isBloodHunter is true && v.specialization == Specialization.DarkbloodMagus;
-        }
+        private bool IsTwilightMage() => Player.GetModPlayer<BloodHunter>().isBloodHunter && Player.GetModPlayer<BloodHunter>().specialization == Specialization.TwilightMage;
     }
 }
 

@@ -20,11 +20,11 @@ namespace BloodHunter.Content.Items.Accessories
 
             switch (p.specialization)
             {
-                case Specialization.SanguineMarksman:
+                case Specialization.MidnightRanger:
                     player.statDefense += p.bloodMax2 / 10;
                     break;
 
-                case Specialization.DarkbloodMagus:
+                case Specialization.TwilightMage:
                     player.statLifeMax2 -= 20;
                     p.getBloodRate -= 120;
                     break;

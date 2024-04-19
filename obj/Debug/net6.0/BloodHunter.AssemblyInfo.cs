@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BloodHunter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e2a03d2fec8e61008cfbc4a183393f5f52534d1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bda4292c51ba66fca42006a70d284abd15ba86e")]
 [assembly: System.Reflection.AssemblyProductAttribute("BloodHunter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BloodHunter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
