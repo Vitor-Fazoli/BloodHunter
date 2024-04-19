@@ -2,3 +2,6 @@
 .vs
 bin/
 obj/
+obj/Debug/net6.0/BloodHunter.AssemblyInfoInputs.cache
+obj/Debug/net6.0/BloodHunter.AssemblyInfo.cs
+obj/Debug/net6.0/BloodHunter.csproj.AssemblyReference.cache
