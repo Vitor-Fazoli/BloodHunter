@@ -26,6 +26,7 @@
     <None Remove="Assets\ClassMenuBackground.png" />
     <None Remove="Content\Buffs\BloodPlague.png" />
     <None Remove="Content\Buffs\Day.png" />
+    <None Remove="Content\Buffs\Hemorrhage.png" />
     <None Remove="Content\Buffs\Night.png" />
     <None Remove="Content\Items\Accessories\DarkHarpyWings.png" />
     <None Remove="Content\Items\Accessories\DarkHarpyWings_Wings.png" />
@@ -40,6 +41,7 @@
     <None Remove="Content\Itens\Consumables\BloodGoblet.png" />
     <None Remove="Content\Itens\LifeEssence.png" />
     <None Remove="Content\Itens\SuspiciousPotion.png" />
+    <None Remove="Content\Projectiles\BloodStake.png" />
     <None Remove="Content\Projectiles\CursedSword.png" />
     <None Remove="Content\Projectiles\Malediction.png" />
     <None Remove="Content\Projectiles\WoodenBolt.png" />
